@@ -1,0 +1,22 @@
+# System dependencies for GFIS v2.0 deployment
+# These packages will be installed via apt-get on Linux systems
+
+# Build tools
+build-essential
+
+# Python development headers
+python3-dev
+
+# For data processing and scientific computing
+libatlas-base-dev
+gfortran
+liblapack-dev
+libblas-dev
+
+# For potential image processing (if needed)
+libjpeg-dev
+libpng-dev
+libtiff-dev
+
+# For git operations (if needed)
+git
