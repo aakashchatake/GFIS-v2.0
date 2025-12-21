@@ -1,3 +1,15 @@
+---
+title: GFIS v2.0 - Green Fuel Intelligence System
+emoji: 🔋
+colorFrom: green
+colorTo: blue
+sdk: streamlit
+sdk_version: 1.28.1
+app_file: enhanced_dashboard.py
+pinned: false
+license: mit
+---
+
 # 🌿 GFIS v2.0 - Green Fuel Intelligence System
 ## AI-Powered Biogas Production Optimization for DIPEX 2026
 
