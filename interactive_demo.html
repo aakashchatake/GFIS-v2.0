@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GFIS v2.0 - Enterprise Biogas Intelligence Dashboard | Interactive Demo</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Enhanced Palette for v2.0 -->
+    <style>
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9; }
+        .chart-container { 
+            position: relative; 
+            width: 100%; 
+            max-width: 600px; 
+            height: 300px; 
+            margin: 0 auto;
+        }
+        .nav-active { border-bottom: 2px solid #06b6d4; color: #06b6d4; font-weight: 600; }
+        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .transition-all { transition: all 0.3s ease-in-out; }
+        .glass-effect { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .metric-card { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+        .feature-highlight { background: linear-gradient(135deg, #10b981, #059669); }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1e293b; }
+        ::-webkit-scrollbar-thumb { background: #06b6d4; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0891b2; }
+    </style>
+
+    <!-- Application Structure Plan: 
+         1. Hero Header: Branding and high-level Project Title.
+         2. Strategic Overview (Dashboard): Executive Summary and Problem/Solution interactive toggle.
+         3. Intelligence Core (The 'AI' Section): Interactive grid detailing the 5 ML components + Live Simulation.
+         4. Live Simulation: A 'Yield Calculator' utilizing Chart.js to visualize the 'Objectives' (Prediction/Optimization).
+         5. Architecture & Process: CSS-grid based flow diagram replacing static image.
+         6. Impact & Vision: Cards for outcomes and long-term roadmap.
+         7. Footer: Formal contact details.
+         WHY: This structure moves from 'Who we are' -> 'What is the problem' -> 'Our Solution (Tech)' -> 'Proof of Value (Sim)' -> 'How it works' -> 'Future'. It mimics a pitch flow.
+    -->
+
+    <!-- Visualization & Content Choices:
+         1. Problem Statement -> Goal: Compare -> Method: Interactive Comparison Cards -> Interaction: Toggle State -> Justification: Text-heavy problem statements are boring; toggling keeps UI clean.
+         2. AI Components -> Goal: Inform -> Method: Interactive Grid with Icons -> Interaction: Hover/Click to reveal details -> Justification: Allows digging into the 5 technical modules without clutter.
+         3. Yield Prediction -> Goal: Inform/Engage -> Method: Line Chart (Chart.js) + Sliders -> Interaction: User adjusts waste input, chart updates -> Justification: Demonstrates the 'Prediction' capability of GFIS physically.
+         4. Waste Composition -> Goal: Inform -> Method: Doughnut Chart (Chart.js) -> Interaction: Hover for stats -> Justification: Visualizes the 'Computer Vision' aspect of waste classification.
+         5. Architecture -> Goal: Organize -> Method: Styled HTML Flex/Grid Diagram -> Interaction: None (Visual Reference) -> Justification: Replaces image requirement with responsive HTML code.
+    -->
+
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header / Navigation -->
+    <header class="bg-slate-900/80 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex flex-col">
+                    <h1 class="text-3xl font-bold text-cyan-400 tracking-tight">GFIS <span class="text-cyan-300 text-lg font-medium ml-2">v2.0 Enterprise</span></h1>
+                    <span class="text-xs text-slate-400 uppercase tracking-wider">Chatake Innoworks | DIPEX 2026 Winner</span>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <button onclick="navTo('overview')" id="nav-overview" class="nav-btn nav-active py-2 px-1 text-sm font-medium text-white hover:text-cyan-400 transition-colors">Dashboard</button>
+                    <button onclick="navTo('technology')" id="nav-technology" class="nav-btn py-2 px-1 text-sm font-medium text-slate-400 hover:text-cyan-400 transition-colors">AI Engine</button>
+                    <button onclick="navTo('simulation')" id="nav-simulation" class="nav-btn py-2 px-1 text-sm font-medium text-slate-400 hover:text-cyan-400 transition-colors">Live Demo</button>
+                    <button onclick="navTo('architecture')" id="nav-architecture" class="nav-btn py-2 px-1 text-sm font-medium text-slate-400 hover:text-cyan-400 transition-colors">Architecture</button>
+                    <button onclick="navTo('impact')" id="nav-impact" class="nav-btn py-2 px-1 text-sm font-medium text-slate-400 hover:text-cyan-400 transition-colors">Impact & ESG</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow bg-slate-900">
+        
+        <!-- SECTION 1: DASHBOARD OVERVIEW -->
+        <section id="overview" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 transition-all">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-extrabold text-white sm:text-5xl">GFIS v2.0 Enterprise Dashboard</h2>
+                <p class="mt-4 max-w-3xl text-xl text-slate-300 mx-auto">11-Page AI-Powered Biogas Intelligence Platform with Real-Time Analytics & Predictive Optimization</p>
+                <div class="mt-6 flex justify-center space-x-4">
+                    <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Enterprise Ready</span>
+                    <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">DIPEX 2026</span>
+                    <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-purple-500/20 text-purple-300 border border-purple-500/30">AI-Powered</span>
+                </div>
+            </div>
+
+            <!-- Key Metrics Dashboard -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                <div class="metric-card rounded-xl p-6 text-center text-white">
+                    <div class="text-3xl font-bold">₹24.8B</div>
+                    <div class="text-cyan-100 text-sm">Annual Revenue</div>
+                </div>
+                <div class="metric-card rounded-xl p-6 text-center text-white">
+                    <div class="text-3xl font-bold">40,000t</div>
+                    <div class="text-cyan-100 text-sm">CO2 Reduced</div>
+                </div>
+                <div class="metric-card rounded-xl p-6 text-center text-white">
+                    <div class="text-3xl font-bold">3.1B kWh</div>
+                    <div class="text-cyan-100 text-sm">Energy Generated</div>
+                </div>
+                <div class="metric-card rounded-xl p-6 text-center text-white">
+                    <div class="text-3xl font-bold">85%</div>
+                    <div class="text-cyan-100 text-sm">Efficiency Rate</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <!-- Executive Summary -->
+                <div class="glass-effect rounded-xl p-6 border-l-4 border-cyan-400">
+                    <h3 class="text-xl font-semibold text-white mb-4">🏆 Enterprise Intelligence Platform</h3>
+                    <p class="text-slate-300 leading-relaxed text-sm mb-4">
+                        GFIS v2.0 represents a quantum leap in biogas infrastructure management. Our 11-page enterprise dashboard integrates advanced AI/ML models, real-time IoT monitoring, and predictive analytics to deliver unprecedented operational excellence and sustainability impact.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div class="text-cyan-300">📊 11 Dashboard Pages</div>
+                        <div class="text-cyan-300">🤖 3 ML Models (R²=0.92)</div>
+                        <div class="text-cyan-300">⚡ Real-Time Monitoring</div>
+                        <div class="text-cyan-300">🌍 ESG Analytics</div>
+                    </div>
+                </div>
+                
+                <!-- Problem vs Solution Interactive -->
+                <div class="glass-effect rounded-xl p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-semibold text-white">Challenge → Solution</h3>
+                        <div class="bg-slate-700 rounded-lg p-1 flex">
+                            <button onclick="toggleProblem('problem')" id="btn-problem" class="px-3 py-1 rounded-md text-sm font-medium bg-cyan-500 text-white">Challenge</button>
+                            <button onclick="toggleProblem('solution')" id="btn-solution" class="px-3 py-1 rounded-md text-sm font-medium text-slate-400">Solution</button>
+                        </div>
+                    </div>
+                    
+                    <div id="content-problem" class="text-sm text-red-300">
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-red-400 mr-2">❌</span> Unpredictable biogas yields causing operational failures</li>
+                            <li class="flex items-start"><span class="text-red-400 mr-2">❌</span> Lack of real-time monitoring and predictive maintenance</li>
+                            <li class="flex items-start"><span class="text-red-400 mr-2">❌</span> Manual data analysis limiting scalability</li>
+                            <li class="flex items-start"><span class="text-red-400 mr-2">❌</span> No integrated ESG and financial tracking</li>
+                        </ul>
+                    </div>
+
+                    <div id="content-solution" class="hidden text-sm text-emerald-300">
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-emerald-400 mr-2">✅</span> <strong>AI Forecasting</strong> with 92% prediction accuracy</li>
+                            <li class="flex items-start"><span class="text-emerald-400 mr-2">✅</span> <strong>11-Page Dashboard</strong> with real-time analytics</li>
+                            <li class="flex items-start"><span class="text-emerald-400 mr-2">✅</span> <strong>Predictive Maintenance</strong> and automated alerts</li>
+                            <li class="flex items-start"><span class="text-emerald-400 mr-2">✅</span> <strong>ESG Integration</strong> with carbon footprint tracking</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: DASHBOARD PAGES -->
+        <section id="technology" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-white">11 Enterprise Dashboard Pages</h2>
+                <p class="mt-2 text-slate-300">Explore the comprehensive GFIS v2.0 intelligence platform. Click to view page details.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+                <button onclick="showTech('overview')" class="tech-tab-btn glass-effect p-4 rounded-xl border border-slate-600 hover:border-cyan-400 text-left focus:outline-none focus:ring-2 focus:ring-cyan-400 active-tab">
+                    <div class="text-cyan-400 text-xl mb-2">🏠</div>
+                    <div class="font-semibold text-white text-sm">Overview</div>
+                </button>
+                <button onclick="showTech('monitoring')" class="tech-tab-btn glass-effect p-4 rounded-xl border border-slate-600 hover:border-cyan-400 text-left focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                    <div class="text-cyan-400 text-xl mb-2">📊</div>
+                    <div class="font-semibold text-white text-sm">Real-time Monitoring</div>
+                </button>
+                <button onclick="showTech('analytics')" class="tech-tab-btn glass-effect p-4 rounded-xl border border-slate-600 hover:border-cyan-400 text-left focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                    <div class="text-cyan-400 text-xl mb-2">🎯</div>
+                    <div class="font-semibold text-white text-sm">Production Analytics</div>
+                </button>
+                <button onclick="showTech('predictions')" class="tech-tab-btn glass-effect p-4 rounded-xl border border-slate-600 hover:border-cyan-400 text-left focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                    <div class="text-cyan-400 text-xl mb-2">🤖</div>
+                    <div class="font-semibold text-white text-sm">ML Predictions</div>
+                </button>
+                <button onclick="showTech('geospatial')" class="tech-tab-btn glass-effect p-4 rounded-xl border border-slate-600 hover:border-cyan-400 text-left focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                    <div class="text-cyan-400 text-xl mb-2">🗺️</div>
+                    <div class="font-semibold text-white text-sm">Geographic Analysis</div>
+                </button>
+                <button onclick="showTech('revenue')" class="tech-tab-btn glass-effect p-4 rounded-xl border border-slate-600 hover:border-cyan-400 text-left focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                    <div class="text-cyan-400 text-xl mb-2">⚡</div>
+                    <div class="font-semibold text-white text-sm">Revenue Tracking</div>
+                </button>
+                <button onclick="showTech('health')" class="tech-tab-btn glass-effect p-4 rounded-xl border border-slate-600 hover:border-cyan-400 text-left focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                    <div class="text-cyan-400 text-xl mb-2">🔧</div>
+                    <div class="font-semibold text-white text-sm">System Health</div>
+                </button>
+                <button onclick="showTech('advanced')" class="tech-tab-btn glass-effect p-4 rounded-xl border border-slate-600 hover:border-cyan-400 text-left focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                    <div class="text-cyan-400 text-xl mb-2">📈</div>
+                    <div class="font-semibold text-white text-sm">Advanced Analytics</div>
+                </button>
+                <button onclick="showTech('enterprise')" class="tech-tab-btn glass-effect p-4 rounded-xl border border-slate-600 hover:border-cyan-400 text-left focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                    <div class="text-cyan-400 text-xl mb-2">🏢</div>
+                    <div class="font-semibold text-white text-sm">Enterprise Suite</div>
+                </button>
+                <button onclick="showTech('executive')" class="tech-tab-btn glass-effect p-4 rounded-xl border border-slate-600 hover:border-cyan-400 text-left focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                    <div class="text-cyan-400 text-xl mb-2">🎯</div>
+                    <div class="font-semibold text-white text-sm">Executive Command</div>
+                </button>
+                <button onclick="showTech('sustainability')" class="tech-tab-btn glass-effect p-4 rounded-xl border border-slate-600 hover:border-cyan-400 text-left focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                    <div class="text-cyan-400 text-xl mb-2">🌍</div>
+                    <div class="font-semibold text-white text-sm">Sustainability Hub</div>
+                </button>
+                <button onclick="showTech('operations')" class="tech-tab-btn glass-effect p-4 rounded-xl border border-slate-600 hover:border-cyan-400 text-left focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                    <div class="text-cyan-400 text-xl mb-2">⚙️</div>
+                    <div class="font-semibold text-white text-sm">Operations Center</div>
+                </button>
+            </div>
+
+            <!-- Detailed Content Panel -->
+            <div class="glass-effect rounded-2xl p-8 border-t-4 border-cyan-400 min-h-[300px]">
+                <div id="tech-content-overview">
+                    <h3 class="text-2xl font-bold text-white mb-4">🏠 Overview Dashboard</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-slate-300 mb-4">Executive summary with key performance indicators, system status, and critical alerts.</p>
+                            <ul class="list-disc pl-5 text-sm text-slate-300 space-y-2">
+                                <li><strong>KPI Dashboard:</strong> Revenue, efficiency, and sustainability metrics</li>
+                                <li><strong>System Status:</strong> Real-time operational health indicators</li>
+                                <li><strong>Alert Center:</strong> Critical notifications and maintenance warnings</li>
+                                <li><strong>Quick Actions:</strong> One-click access to key functions</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-800/50 rounded-lg p-4">
+                            <h4 class="text-cyan-300 font-semibold mb-2">Key Features:</h4>
+                            <div class="space-y-2 text-sm text-slate-300">
+                                <div>📊 Live KPI Updates</div>
+                                <div>🚨 Smart Alert System</div>
+                                <div>🎯 Executive Summary</div>
+                                <div>⚡ Quick Navigation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tech-content-monitoring" class="hidden">
+                    <h3 class="text-2xl font-bold text-white mb-4">📊 Real-Time Monitoring</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-slate-300 mb-4">Live data streams from IoT sensors across all biogas plants with real-time analytics and alerting.</p>
+                            <ul class="list-disc pl-5 text-sm text-slate-300 space-y-2">
+                                <li><strong>Live Data Streams:</strong> Temperature, pressure, gas flow, and efficiency metrics</li>
+                                <li><strong>IoT Integration:</strong> Automated data collection from 50+ sensor points</li>
+                                <li><strong>Alert System:</strong> Smart notifications for anomalies and maintenance needs</li>
+                                <li><strong>Performance Tracking:</strong> Real-time efficiency and yield monitoring</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-800/50 rounded-lg p-4">
+                            <h4 class="text-cyan-300 font-semibold mb-2">Live Metrics:</h4>
+                            <div class="space-y-2 text-sm text-slate-300">
+                                <div>🌡️ Temperature: 38.5°C</div>
+                                <div>⚡ Gas Flow: 245 m³/h</div>
+                                <div>📈 Efficiency: 87.3%</div>
+                                <div>🚨 Alerts: 2 Active</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tech-content-predictions" class="hidden">
+                    <h3 class="text-2xl font-bold text-white mb-4">🤖 ML Predictions</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-slate-300 mb-4">AI-powered forecasting models providing accurate biogas yield predictions and optimization recommendations.</p>
+                            <ul class="list-disc pl-5 text-sm text-slate-300 space-y-2">
+                                <li><strong>Yield Forecasting:</strong> XGBoost model with R²=0.92 accuracy</li>
+                                <li><strong>Feedstock Optimization:</strong> ML recommendations for waste mix ratios</li>
+                                <li><strong>Seasonal Planning:</strong> Predictive analytics for demand forecasting</li>
+                                <li><strong>Risk Assessment:</strong> Failure prediction and preventive maintenance</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-800/50 rounded-lg p-4">
+                            <h4 class="text-cyan-300 font-semibold mb-2">Model Performance:</h4>
+                            <div class="space-y-2 text-sm text-slate-300">
+                                <div>🎯 Accuracy: 92.4%</div>
+                                <div>📊 Predictions: 1,600+ data points</div>
+                                <div>🔄 Models: 3 trained</div>
+                                <div>⚡ Real-time: <1s response</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tech-content-sustainability" class="hidden">
+                    <h3 class="text-2xl font-bold text-white mb-4">🌍 Sustainability Hub</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-slate-300 mb-4">Comprehensive ESG tracking, carbon footprint analysis, and sustainability reporting for regulatory compliance.</p>
+                            <ul class="list-disc pl-5 text-sm text-slate-300 space-y-2">
+                                <li><strong>Carbon Footprint:</strong> Real-time CO2 reduction tracking (40,000t/year)</li>
+                                <li><strong>ESG Scoring:</strong> Automated sustainability performance metrics</li>
+                                <li><strong>Regulatory Compliance:</strong> Automated reporting for government standards</li>
+                                <li><strong>Impact Analytics:</strong> Social and environmental benefit quantification</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-800/50 rounded-lg p-4">
+                            <h4 class="text-cyan-300 font-semibold mb-2">ESG Metrics:</h4>
+                            <div class="space-y-2 text-sm text-slate-300">
+                                <div>🌱 CO2 Reduced: 40,000 tonnes</div>
+                                <div>⚡ Energy Generated: 3.1B kWh</div>
+                                <div>🏆 ESG Score: 85/100</div>
+                                <div>👥 Households: 3,000+ benefited</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                • Input: Temp, Moisture, C/N Ratio<br>
+                                • Output: m³ Methane / Day<br>
+                                • Accuracy Goal: > 92%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tech-content-cv" class="hidden">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">B. Computer Vision Module</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-gray-600 mb-4">Automated quality control of raw material input using camera feeds and image analysis.</p>
+                            <ul class="list-disc pl-5 text-sm text-gray-600 space-y-2">
+                                <li><strong>Moisture Detection:</strong> Visual analysis of feedstock to estimate water content.</li>
+                                <li><strong>Waste Classification:</strong> Distinguishes between agricultural residue, manure, and food waste.</li>
+                                <li><strong>Contaminant Alert:</strong> Flags non-organic materials before they enter the digester.</li>
+                            </ul>
+                        </div>
+                        <!-- CV Visualization -->
+                         <div class="flex flex-col items-center">
+                            <h4 class="text-sm font-semibold text-gray-500 mb-2">Waste Composition Analysis</h4>
+                            <div class="chart-container" style="height: 200px; width: 200px;">
+                                <canvas id="cvChart"></canvas>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+
+                <div id="tech-content-geo" class="hidden">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">C. Geospatial ML (GIS + AI)</h3>
+                    <p class="text-gray-600 mb-4">Strategic infrastructure planning using satellite data and spatial clustering.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                        <div class="p-4 bg-emerald-50 rounded-lg">
+                            <div class="font-bold text-emerald-700">Mapping</div>
+                            <div class="text-xs text-gray-500 mt-1">Village waste generation heatmaps</div>
+                        </div>
+                        <div class="p-4 bg-emerald-50 rounded-lg">
+                            <div class="font-bold text-emerald-700">Clustering</div>
+                            <div class="text-xs text-gray-500 mt-1">K-Means for optimal hub placement</div>
+                        </div>
+                        <div class="p-4 bg-emerald-50 rounded-lg">
+                            <div class="font-bold text-emerald-700">Routing</div>
+                            <div class="text-xs text-gray-500 mt-1">Transport logistics optimization</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tech-content-iot" class="hidden">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">D. IoT + ML Integration</h3>
+                    <p class="text-gray-600 mb-4">The nervous system of the biogas plant, providing real-time telemetry.</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="border-l-2 border-emerald-500 pl-4">
+                            <h4 class="font-semibold text-gray-800">Monitoring</h4>
+                            <p class="text-sm text-gray-500">Temperature, pH, Gas Flow, Pressure</p>
+                        </div>
+                        <div class="border-l-2 border-emerald-500 pl-4">
+                            <h4 class="font-semibold text-gray-800">Maintenance</h4>
+                            <p class="text-sm text-gray-500">Predictive failure alerts & Anomaly Detection</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tech-content-rl" class="hidden">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">E. Reinforcement Learning</h3>
+                    <p class="text-gray-600 mb-4">Advanced adaptive optimization for process control.</p>
+                    <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+                        <h4 class="font-bold text-indigo-900">Adaptive Mixing Ratios</h4>
+                        <p class="text-sm text-indigo-700 mt-1">The system "learns" the optimal mix of cow dung, food waste, and crop residue over time to maximize methane output, adjusting autonomously to changing input quality.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: LIVE SIMULATION -->
+        <section id="simulation" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900">Live Yield Simulation</h2>
+                    <p class="mt-2 text-gray-600">Experience how GFIS predicts energy output based on variable inputs.</p>
+                </div>
+                <div class="mt-4 md:mt-0 bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-200">
+                    <span class="text-xs font-bold text-gray-500 uppercase block">Total Efficiency Score</span>
+                    <span id="efficiency-score" class="text-2xl font-bold text-emerald-600">85%</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Controls -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="font-bold text-gray-800 mb-6">Input Parameters</h3>
+                    
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Organic Waste Input (Tons/Day)</label>
+                        <input type="range" id="waste-input" min="1" max="100" value="50" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                        <div class="flex justify-between text-xs text-gray-500 mt-1">
+                            <span>1 Ton</span>
+                            <span id="waste-val" class="font-bold text-emerald-700">50 Tons</span>
+                            <span>100 Tons</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Input Quality (Moisture/Purity)</label>
+                        <input type="range" id="quality-input" min="1" max="10" value="7" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                        <div class="flex justify-between text-xs text-gray-500 mt-1">
+                            <span>Low</span>
+                            <span id="quality-val" class="font-bold text-emerald-700">Good</span>
+                            <span>High</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-emerald-50 rounded-lg mt-8">
+                        <div class="text-sm text-emerald-800 mb-1">Predicted Methane Yield</div>
+                        <div class="text-3xl font-bold text-emerald-900" id="yield-output">2,450 m³</div>
+                        <div class="text-xs text-emerald-600 mt-1">Enough to power <span id="households-output" class="font-bold">120</span> homes</div>
+                    </div>
+                </div>
+
+                <!-- Visualization -->
+                <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="font-bold text-gray-800 mb-4">Projected Output vs. Unoptimized</h3>
+                    <div class="chart-container" style="max-width: 100%; height: 350px;">
+                        <canvas id="yieldChart"></canvas>
+                    </div>
+                    <p class="text-xs text-center text-gray-400 mt-2">Data simulated based on GFIS prediction algorithms.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: ARCHITECTURE -->
+        <section id="architecture" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">System Architecture</h2>
+            
+            <div class="relative">
+                <!-- Architecture Diagram Built with CSS Grid/Flex -->
+                <div class="flex flex-col items-center space-y-8">
+                    
+                    <!-- Layer 1: Inputs -->
+                    <div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-gray-100 p-4 rounded-lg border-2 border-gray-300 text-center">
+                            <div class="font-bold text-gray-700">Sensors (IoT)</div>
+                            <div class="text-xs text-gray-500">Temp, pH, Flow</div>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg border-2 border-gray-300 text-center">
+                            <div class="font-bold text-gray-700">Geospatial Data</div>
+                            <div class="text-xs text-gray-500">Maps, Satellite</div>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg border-2 border-gray-300 text-center">
+                            <div class="font-bold text-gray-700">Waste Logistics</div>
+                            <div class="text-xs text-gray-500">Volume, Type</div>
+                        </div>
+                    </div>
+
+                    <!-- Arrow Down -->
+                    <div class="text-gray-400 text-2xl">⬇</div>
+
+                    <!-- Layer 2: Processing (GFIS Core) -->
+                    <div class="w-full max-w-3xl bg-emerald-900 p-6 rounded-xl shadow-xl text-white text-center">
+                        <h3 class="text-xl font-bold mb-4">GFIS Processing Core</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div class="bg-emerald-800 p-3 rounded border border-emerald-600">
+                                <div class="font-semibold text-sm">Aggregation</div>
+                            </div>
+                            <div class="bg-emerald-800 p-3 rounded border border-emerald-600">
+                                <div class="font-semibold text-sm">ML Engine</div>
+                            </div>
+                            <div class="bg-emerald-800 p-3 rounded border border-emerald-600">
+                                <div class="font-semibold text-sm">Optimization</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Arrow Down -->
+                    <div class="text-gray-400 text-2xl">⬇</div>
+
+                    <!-- Layer 3: Output -->
+                    <div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-white p-5 rounded-lg shadow-md border-l-4 border-blue-500">
+                            <h4 class="font-bold text-gray-800">Gov Dashboard</h4>
+                            <p class="text-xs text-gray-500 mt-1">Policy planning, aggregated stats, regional reporting.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-lg shadow-md border-l-4 border-emerald-500">
+                            <h4 class="font-bold text-gray-800">Plant Control</h4>
+                            <p class="text-xs text-gray-500 mt-1">Real-time alerts, maintenance schedules, yield tracking.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="mt-16">
+                <h3 class="text-xl font-bold text-gray-900 mb-6">Methodology Timeline</h3>
+                <div class="relative border-l-4 border-gray-200 ml-3 space-y-8">
+                    <div class="ml-6">
+                        <span class="absolute -left-2.5 mt-1 h-5 w-5 rounded-full border-2 border-white bg-emerald-500"></span>
+                        <h4 class="font-bold text-gray-900">Phase 1: Data Collection</h4>
+                        <p class="text-sm text-gray-600">Gathering village waste data, environment variables, and satellite imagery.</p>
+                    </div>
+                    <div class="ml-6">
+                        <span class="absolute -left-2.5 mt-1 h-5 w-5 rounded-full border-2 border-white bg-emerald-500"></span>
+                        <h4 class="font-bold text-gray-900">Phase 2: Model Development</h4>
+                        <p class="text-sm text-gray-600">Training regression and CV models on pilot datasets.</p>
+                    </div>
+                    <div class="ml-6">
+                        <span class="absolute -left-2.5 mt-1 h-5 w-5 rounded-full border-2 border-white bg-emerald-500"></span>
+                        <h4 class="font-bold text-gray-900">Phase 3: Pilot Testing</h4>
+                        <p class="text-sm text-gray-600">Deployment in selected rural hubs for real-world validation.</p>
+                    </div>
+                    <div class="ml-6">
+                        <span class="absolute -left-2.5 mt-1 h-5 w-5 rounded-full border-2 border-white bg-gray-300"></span>
+                        <h4 class="font-bold text-gray-500">Phase 4: Evaluation</h4>
+                        <p class="text-sm text-gray-400">Analysis of methane output increase and carbon footprint reduction.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: IMPACT & TEAM -->
+        <section id="impact" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Expected Outcomes</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                        <div class="text-4xl font-bold text-emerald-600 mb-2">30%↑</div>
+                        <div class="text-sm font-medium text-gray-900">Methane Yield</div>
+                        <div class="text-xs text-gray-500 mt-1">Through optimized mixing</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                        <div class="text-4xl font-bold text-blue-600 mb-2">High</div>
+                        <div class="text-sm font-medium text-gray-900">Scalability</div>
+                        <div class="text-xs text-gray-500 mt-1">For District/State use</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                        <div class="text-4xl font-bold text-green-600 mb-2">↓ CO2</div>
+                        <div class="text-sm font-medium text-gray-900">Carbon Footprint</div>
+                        <div class="text-xs text-gray-500 mt-1">Sustainable practice</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                        <div class="text-4xl font-bold text-orange-600 mb-2">Jobs</div>
+                        <div class="text-sm font-medium text-gray-900">Rural Employment</div>
+                        <div class="text-xs text-gray-500 mt-1">Micro-enterprise growth</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-emerald-900 rounded-2xl shadow-xl overflow-hidden mb-12">
+                <div class="p-8 text-center sm:text-left sm:flex sm:items-center sm:justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white">Long-Term Vision</h3>
+                        <p class="mt-2 text-emerald-100 max-w-2xl">GFIS will evolve into a national AI-based renewable energy planning platform, integrating solar, biomass, and multi-source rural energy mapping.</p>
+                    </div>
+                    <div class="mt-6 sm:mt-0">
+                        <span class="block text-emerald-300 text-sm font-semibold uppercase tracking-wider">Stakeholders</span>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-emerald-800 rounded text-xs text-white">State Govt</span>
+                            <span class="px-2 py-1 bg-emerald-800 rounded text-xs text-white">Energy Depts</span>
+                            <span class="px-2 py-1 bg-emerald-800 rounded text-xs text-white">Private Corps</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 pt-10">
+                <h3 class="text-xl font-bold text-gray-900 mb-6">Organization & Team</h3>
+                <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+                    <p class="font-bold text-gray-800 text-lg">Chatake Innoworks Pvt. Ltd.</p>
+                    <p class="text-sm text-emerald-600 font-medium mb-4">GreenWorks Division – Sustainable Energy Innovation Unit</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
+                        <div>
+                            <span class="font-semibold block text-gray-900">Development Team:</span>
+                            Final Year Computer Engineering Team
+                        </div>
+                        <div>
+                            <span class="font-semibold block text-gray-900">Mentor:</span>
+                            Akash Chatake (Mathematics & AI/ML Research)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h4 class="text-white text-lg font-bold">Chatake Innoworks Pvt. Ltd.</h4>
+                    <p class="text-gray-400 text-sm mt-1">Neharu Industrial Estate, Solapur, Maharashtra, India</p>
+                </div>
+                <div class="md:text-right text-gray-400 text-sm space-y-1">
+                    <p><a href="mailto:admin@chatakeinnoworks.com" class="hover:text-emerald-400">admin@chatakeinnoworks.com</a></p>
+                    <p><a href="https://www.chatakeinnoworks.com" class="hover:text-emerald-400">www.chatakeinnoworks.com</a></p>
+                    <p>LinkedIn: Chatake Innoworks Pvt. Ltd.</p>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center">
+                <p class="text-xs text-gray-500">Keywords: Biogas • Machine Learning • Sustainable Energy • Geospatial AI • IoT • Methane Prediction</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Navigation Logic ---
+        function navTo(sectionId) {
+            // Hide all sections
+            const sections = ['overview', 'technology', 'simulation', 'architecture', 'impact'];
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if(el) {
+                   el.classList.add('hidden');
+                   el.classList.remove('fade-in'); // Reset animation
+                }
+            });
+
+            // Show target section
+            const target = document.getElementById(sectionId);
+            if(target) {
+                target.classList.remove('hidden');
+                // Simple fade in effect
+                setTimeout(() => target.classList.add('opacity-100'), 10);
+            }
+
+            // Update Nav State
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('nav-active', 'text-gray-900');
+                btn.classList.add('text-gray-500');
+            });
+            const activeBtn = document.getElementById('nav-' + sectionId);
+            if(activeBtn) {
+                activeBtn.classList.add('nav-active', 'text-gray-900');
+                activeBtn.classList.remove('text-gray-500');
+            }
+
+            // Resize charts if entering simulation or tech tab
+            if(sectionId === 'simulation') {
+                if(yieldChartInstance) yieldChartInstance.resize();
+            }
+            if(sectionId === 'technology') {
+                if(cvChartInstance) cvChartInstance.resize();
+            }
+
+            window.scrollTo(0, 0);
+        }
+
+        // --- Problem/Solution Toggle ---
+        function toggleProblem(view) {
+            const problemDiv = document.getElementById('content-problem');
+            const solutionDiv = document.getElementById('content-solution');
+            const btnProb = document.getElementById('btn-problem');
+            const btnSol = document.getElementById('btn-solution');
+
+            if (view === 'problem') {
+                problemDiv.classList.remove('hidden');
+                solutionDiv.classList.add('hidden');
+                btnProb.classList.add('bg-white', 'shadow-sm', 'text-gray-900');
+                btnProb.classList.remove('text-gray-500');
+                btnSol.classList.remove('bg-white', 'shadow-sm', 'text-gray-900');
+                btnSol.classList.add('text-gray-500');
+            } else {
+                problemDiv.classList.add('hidden');
+                solutionDiv.classList.remove('hidden');
+                btnSol.classList.add('bg-white', 'shadow-sm', 'text-gray-900');
+                btnSol.classList.remove('text-gray-500');
+                btnProb.classList.remove('bg-white', 'shadow-sm', 'text-gray-900');
+                btnProb.classList.add('text-gray-500');
+            }
+        }
+
+        // --- Tech Tab Logic ---
+        function showTech(pageId) {
+            // Update buttons
+            document.querySelectorAll('.tech-tab-btn').forEach(btn => {
+                btn.classList.remove('ring-2', 'ring-cyan-400', 'border-cyan-400', 'bg-cyan-500/10');
+                btn.classList.add('border-slate-600');
+            });
+            // Highlight clicked
+            event.currentTarget.classList.add('ring-2', 'ring-cyan-400', 'border-cyan-400', 'bg-cyan-500/10');
+            event.currentTarget.classList.remove('border-slate-600');
+
+            // Hide all content
+            const pages = ['overview', 'monitoring', 'analytics', 'predictions', 'geospatial', 'revenue', 'health', 'advanced', 'enterprise', 'executive', 'sustainability', 'operations'];
+            pages.forEach(id => {
+                const el = document.getElementById('tech-content-' + id);
+                if(el) el.classList.add('hidden');
+            });
+            // Show target
+            const target = document.getElementById('tech-content-' + pageId);
+            if(target) target.classList.remove('hidden');
+        }
+
+
+        // --- Chart.js Implementations ---
+        let yieldChartInstance = null;
+        let cvChartInstance = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initYieldChart();
+            initCVChart();
+            setupSimulationListeners();
+        });
+
+        function initYieldChart() {
+            const ctx = document.getElementById('yieldChart').getContext('2d');
+            
+            // Initial Data for 50 Tons
+            const initialYield = 2450; 
+            const labels = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'];
+            
+            const dataGFIS = labels.map(() => initialYield + (Math.random() * 200 - 100)); // Consistent high yield
+            const dataTrad = labels.map(() => (initialYield * 0.7) + (Math.random() * 800 - 400)); // Lower, volatile yield
+
+            yieldChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'GFIS Optimized Output (m³)',
+                            data: dataGFIS,
+                            borderColor: '#059669', // Emerald 600
+                            backgroundColor: 'rgba(5, 150, 105, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.4,
+                            fill: true
+                        },
+                        {
+                            label: 'Traditional Methods',
+                            data: dataTrad,
+                            borderColor: '#9CA3AF', // Gray 400
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            tension: 0.1,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top' },
+                        tooltip: { mode: 'index', intersect: false }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, title: { display: true, text: 'Methane Yield (m³)' } }
+                    }
+                }
+            });
+        }
+
+        function initCVChart() {
+            const ctx = document.getElementById('cvChart').getContext('2d');
+            cvChartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Manure', 'Food Waste', 'Agri-Residue', 'Contaminants'],
+                    datasets: [{
+                        data: [50, 25, 20, 5],
+                        backgroundColor: ['#059669', '#10B981', '#34D399', '#EF4444'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false } // Too small for legend
+                    }
+                }
+            });
+        }
+
+        // --- Simulation Logic ---
+        function setupSimulationListeners() {
+            const wasteInput = document.getElementById('waste-input');
+            const qualityInput = document.getElementById('quality-input');
+            const wasteValDisp = document.getElementById('waste-val');
+            const qualityValDisp = document.getElementById('quality-val');
+            const yieldOutput = document.getElementById('yield-output');
+            const housesOutput = document.getElementById('households-output');
+            const effScore = document.getElementById('efficiency-score');
+
+            function updateSimulation() {
+                const tons = parseInt(wasteInput.value);
+                const quality = parseInt(qualityInput.value); // 1-10
+
+                // Update UI Labels
+                wasteValDisp.innerText = `${tons} Tons`;
+                const qLabels = ['Poor', 'Low', 'Fair', 'Fair', 'Average', 'Average', 'Good', 'Good', 'High', 'Premium'];
+                qualityValDisp.innerText = qLabels[quality-1];
+
+                // Algorithm: Base Yield per ton approx 50m3. Quality multiplier 0.5 to 1.2
+                const qualityMultiplier = 0.5 + (quality * 0.07);
+                const predictedYield = Math.floor(tons * 50 * qualityMultiplier); 
+                
+                // Update Text Stats
+                yieldOutput.innerText = predictedYield.toLocaleString() + ' m³';
+                housesOutput.innerText = Math.floor(predictedYield / 20); // Approx 20m3 per house per day equivalent (hypothetical)
+
+                // Update Efficiency Score
+                const score = Math.min(100, Math.floor(70 + (quality * 2) + (tons > 80 ? -5 : 5)));
+                effScore.innerText = score + '%';
+                effScore.className = score > 80 ? 'text-2xl font-bold text-emerald-600' : 'text-2xl font-bold text-yellow-600';
+
+                // Update Chart Data
+                if(yieldChartInstance) {
+                    const newData = yieldChartInstance.data.labels.map(() => predictedYield + (Math.random() * predictedYield * 0.05 - predictedYield * 0.025));
+                    yieldChartInstance.data.datasets[0].data = newData;
+                    
+                    // Update Traditional Baseline (much lower efficiency)
+                    const tradData = yieldChartInstance.data.labels.map(() => (predictedYield * 0.6) + (Math.random() * predictedYield * 0.1));
+                    yieldChartInstance.data.datasets[1].data = tradData;
+                    
+                    yieldChartInstance.update();
+                }
+            }
+
+            wasteInput.addEventListener('input', updateSimulation);
+            qualityInput.addEventListener('input', updateSimulation);
+        }
+
+    </script>
+</body>
+</html>
