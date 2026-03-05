@@ -80,7 +80,7 @@ yield_df = load_yield_data()
 st.sidebar.title("🌿 GFIS Navigation")
 page = st.sidebar.radio(
     "Select Dashboard",
-    ["🏠 Overview", "📊 Real-time Monitoring", "🎯 Production Analytics", 
+    ["🌿 Home", "🏠 Overview", "📊 Real-time Monitoring", "🎯 Production Analytics", 
      "🤖 ML Predictions", "🗺️ Geographic Analysis", "⚡ Revenue Tracking", 
      "🔧 System Health", "📈 Advanced Analytics", "🏢 Enterprise Suite", 
      "🎯 Executive Command Center", "🌍 Sustainability Hub", "⚙️ Operations Center"]
@@ -107,19 +107,203 @@ if enterprise_features:
         st.sidebar.error("Emergency protocols activated!")
 
 st.sidebar.markdown("---")
-st.sidebar.info("""
-**GFIS v2.0**
-Green Fuel Intelligence System
-*AI-Powered Biogas Optimization*
+st.sidebar.markdown("""
+<div style="background:linear-gradient(135deg,#0d2e0d,#1a3d1a);border:1px solid #2d7a2d;border-radius:8px;padding:14px;margin-top:6px;">
+    <div style="color:#4caf50;font-weight:700;font-size:1em;margin-bottom:4px;">🌿 GFIS v2.0</div>
+    <div style="color:#a5d6a7;font-size:0.78em;margin-bottom:8px;">Green Fuel Intelligence System<br><em>AI-Powered Biogas Optimization</em></div>
+    <div style="border-top:1px solid #2d5a2d;padding-top:8px;margin-top:6px;">
+        <div style="color:#81c784;font-size:0.75em;margin-bottom:3px;">🏢 <strong style="color:#c8e6c9;">Chatake Greenworks</strong></div>
+        <div style="color:#81c784;font-size:0.72em;margin-bottom:3px;">📍 Solapur, Maharashtra, India</div>
+        <div style="color:#81c784;font-size:0.72em;margin-bottom:6px;">🏆 DIPEX 2026 Submission</div>
+        <a href="https://internship.chatakeinnoworks.com" target="_blank" style="color:#69f0ae;font-size:0.72em;text-decoration:none;">🔗 internship.chatakeinnoworks.com</a><br>
+        <a href="https://about.chatakeinnoworks.com" target="_blank" style="color:#69f0ae;font-size:0.72em;text-decoration:none;">🌐 about.chatakeinnoworks.com</a>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
-📍 Solapur, Maharashtra, India
-🏢 DIPEX 2026 Submission
-🌿 Chatake Greenworks Division
-🔗 [internship.chatakeinnoworks.com](https://internship.chatakeinnoworks.com)
-""")
+# ==================== PAGE: HOME ====================
+if page == "🌿 Home":
+    # Hero Section
+    st.markdown("""
+    <div style="
+        background: linear-gradient(135deg, #0a1f0a 0%, #0d2e0d 50%, #1a3d1a 100%);
+        border-radius: 16px;
+        padding: 50px 40px;
+        text-align: center;
+        border: 1px solid #2d7a2d;
+        margin-bottom: 24px;
+        box-shadow: 0 8px 32px rgba(45,122,45,0.2);
+    ">
+        <div style="font-size:3.5em;margin-bottom:10px;">🌿</div>
+        <h1 style="font-size:2.8em;font-weight:800;color:#4caf50;margin:0 0 10px 0;letter-spacing:-1px;">
+            Green Fuel Intelligence System
+        </h1>
+        <p style="font-size:1.3em;color:#a5d6a7;margin:0 0 6px 0;font-weight:400;">
+            AI-Powered Biogas Production Optimization Platform
+        </p>
+        <p style="font-size:0.95em;color:#558b2f;margin:0 0 30px 0;">
+            Real-time IoT Monitoring · Machine Learning Predictions · Carbon Credit Analytics · ESG Intelligence
+        </p>
+        <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+            <a href="https://green-fuel-intelligence--59klled.gamma.site/" target="_blank" style="
+                background:#4caf50;color:white;padding:12px 28px;border-radius:8px;
+                text-decoration:none;font-weight:700;font-size:0.95em;
+                box-shadow:0 4px 15px rgba(76,175,80,0.4);display:inline-block;
+            ">📊 View Full Presentation</a>
+            <a href="#" onclick="return false;" style="
+                background:transparent;color:#4caf50;padding:12px 28px;border-radius:8px;
+                text-decoration:none;font-weight:700;font-size:0.95em;
+                border:2px solid #4caf50;display:inline-block;
+            ">🚀 DIPEX 2026</a>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div style="background:#fff3e0;border-left:4px solid #ff9800;border-radius:6px;padding:14px 20px;margin-bottom:24px;">
+        <strong style="color:#e65100;">📌 DIPEX 2026 Submission</strong> &nbsp;|&nbsp;
+        <span style="color:#bf360c;">Use the sidebar to navigate all 12 dashboard modules. Start with <strong>Overview</strong> for a summary.</span>
+        &nbsp;&nbsp;
+        <a href="https://green-fuel-intelligence--59klled.gamma.site/" target="_blank"
+           style="color:#1565c0;font-weight:600;text-decoration:none;">
+            View Gamma Presentation →
+        </a>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Dashboard Navigation Cards
+    st.markdown("### 📋 Dashboard Modules")
+    st.markdown("<p style='color:#666;margin-bottom:20px;'>12 modules covering the full GFIS intelligence stack. Select any from the sidebar.</p>", unsafe_allow_html=True)
+
+    pages_info = [
+        ("🏠", "Overview", "System-wide KPIs, live status, and platform summary. Start here for a full picture."),
+        ("📊", "Real-time Monitoring", "Live digester telemetry — temperature, pressure, pH, methane concentration."),
+        ("🎯", "Production Analytics", "Biogas yield trends, feedstock efficiency, and production forecasting."),
+        ("🤖", "ML Predictions", "XGBoost/LSTM yield predictions, anomaly detection, and feedstock classification."),
+        ("🗺️", "Geographic Analysis", "Spatial distribution of GFIS-monitored plants across Maharashtra."),
+        ("⚡", "Revenue Tracking", "Financial analytics — SaaS revenue, carbon credit income, ROI calculations."),
+        ("🔧", "System Health", "Sensor diagnostics, IoT gateway uptime, maintenance schedule alerts."),
+        ("📈", "Advanced Analytics", "Correlation matrices, process optimization insights, statistical deep-dives."),
+        ("🏢", "Enterprise Suite", "Predictive maintenance engine, financial intelligence, team collaboration hub."),
+        ("🎯", "Executive Command Center", "C-suite overview — strategic KPIs, market positioning, policy alerts."),
+        ("🌍", "Sustainability Hub", "ESG metrics, carbon footprint tracking, SATAT/GOBARdhan compliance."),
+        ("⚙️", "Operations Center", "Day-to-day plant operations, work order management, SOP compliance."),
+    ]
+
+    cols = st.columns(3)
+    for i, (icon, name, desc) in enumerate(pages_info):
+        with cols[i % 3]:
+            st.markdown(f"""
+            <div style="
+                background:linear-gradient(135deg,#f1f8e9,#e8f5e9);
+                border:1px solid #a5d6a7;
+                border-top:3px solid #4caf50;
+                border-radius:10px;
+                padding:18px;
+                margin-bottom:16px;
+                min-height:130px;
+            ">
+                <div style="font-size:1.6em;margin-bottom:6px;">{icon}</div>
+                <div style="font-weight:700;color:#1b5e20;font-size:0.92em;margin-bottom:6px;">{name}</div>
+                <div style="color:#555;font-size:0.78em;line-height:1.5;">{desc}</div>
+            </div>
+            """, unsafe_allow_html=True)
+
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    # Team + Company two-column layout
+    col1, col2 = st.columns([1, 1], gap="large")
+
+    with col1:
+        st.markdown("### 👩‍💻 Project Team")
+        team = [
+            ("Ms. Tanishka Deshpande", "AI/ML Engineering"),
+            ("Ms. Anushka Hitanalli", "Cloud Architecture"),
+            ("Ms. Aditi Gangji", "Data Analytics"),
+            ("Ms. Shruti Hiremath", "Systems Integration"),
+        ]
+        for name, role in team:
+            st.markdown(f"""
+            <div style="
+                background:linear-gradient(135deg,#e8f5e9,#f1f8e9);
+                border-left:4px solid #4caf50;
+                border-radius:6px;
+                padding:12px 16px;
+                margin-bottom:10px;
+                display:flex;
+                align-items:center;
+                gap:12px;
+            ">
+                <span style="font-size:1.5em;">👩‍🔬</span>
+                <div>
+                    <div style="font-weight:700;color:#1b5e20;font-size:0.9em;">{name}</div>
+                    <div style="color:#558b2f;font-size:0.78em;">{role}</div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+
+    with col2:
+        st.markdown("### 🏢 Strategic Partner")
+        st.markdown("""
+        <div style="
+            background: linear-gradient(135deg, #0d2e0d, #1a3d1a);
+            border: 1px solid #2d7a2d;
+            border-radius: 12px;
+            padding: 24px;
+            color: white;
+        ">
+            <div style="font-size:1.8em;margin-bottom:8px;">🌿</div>
+            <div style="color:#4caf50;font-weight:800;font-size:1.1em;margin-bottom:2px;">Chatake Greenworks</div>
+            <div style="color:#a5d6a7;font-size:0.82em;margin-bottom:14px;">Sustainable Energy Innovation Unit<br>
+            <em style="color:#558b2f;">A Division of Chatake Innoworks Pvt. Ltd.</em></div>
+
+            <div style="border-top:1px solid #2d5a2d;padding-top:14px;">
+                <div style="color:#81c784;font-size:0.8em;margin-bottom:6px;">
+                    📍 Nehru Industrial Estate, Damani Nagar<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Solapur – 413001, Maharashtra, India
+                </div>
+                <div style="color:#81c784;font-size:0.8em;margin-bottom:6px;">
+                    📞 <a href="tel:+918600182228" style="color:#69f0ae;text-decoration:none;">+91 8600182228</a>
+                </div>
+                <div style="color:#81c784;font-size:0.8em;margin-bottom:6px;">
+                    📧 <a href="mailto:admin@chatakeinnoworks.com" style="color:#69f0ae;text-decoration:none;">admin@chatakeinnoworks.com</a>
+                </div>
+                <div style="font-size:0.8em;margin-top:10px;">
+                    <a href="https://about.chatakeinnoworks.com" target="_blank" style="color:#69f0ae;text-decoration:none;margin-right:14px;">🌐 About Us</a>
+                    <a href="https://internship.chatakeinnoworks.com" target="_blank" style="color:#69f0ae;text-decoration:none;margin-right:14px;">🎓 Internships</a>
+                    <a href="https://www.linkedin.com/company/chatakeinnoworks" target="_blank" style="color:#69f0ae;text-decoration:none;">💼 LinkedIn</a>
+                </div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    # Gamma Presentation embed link / card
+    st.markdown("""
+    <div style="
+        background:linear-gradient(135deg,#1a237e,#283593);
+        border-radius:12px;
+        padding:30px 36px;
+        text-align:center;
+        border:1px solid #3949ab;
+        margin-bottom:10px;
+    ">
+        <div style="font-size:2em;margin-bottom:8px;">📑</div>
+        <div style="color:#e8eaf6;font-size:1.2em;font-weight:700;margin-bottom:6px;">Full Research Presentation</div>
+        <div style="color:#9fa8da;font-size:0.88em;margin-bottom:20px;">
+            Strategic AI roadmap, market analysis, carbon credit framework, technical architecture, and financial projections.
+        </div>
+        <a href="https://green-fuel-intelligence--59klled.gamma.site/" target="_blank" style="
+            background:#3f51b5;color:white;padding:12px 32px;border-radius:8px;
+            text-decoration:none;font-weight:700;font-size:0.95em;
+            box-shadow:0 4px 15px rgba(63,81,181,0.5);
+        ">🔗 Open Gamma Presentation</a>
+    </div>
+    """, unsafe_allow_html=True)
 
 # ==================== PAGE: OVERVIEW ====================
-if page == "🏠 Overview":
+elif page == "🏠 Overview":
     st.title("🌿 GFIS - Green Fuel Intelligence System")
     st.markdown("### *AI-Powered Biogas Production Optimization for DIPEX 2026*")
     
@@ -1635,29 +1819,86 @@ elif page == "⚙️ Operations Center":
 st.markdown("---")
 st.markdown("""
 <div style="
-    text-align: center;
-    padding: 24px 20px 12px 20px;
-    background: linear-gradient(135deg, #1a2e1a 0%, #0d1f0d 100%);
-    border-radius: 10px;
-    border-top: 3px solid #2d7a2d;
-    margin-top: 20px;
+    background: linear-gradient(135deg, #071407 0%, #0d2e0d 60%, #1a3d1a 100%);
+    border-radius: 16px;
+    border: 1px solid #2d5a2d;
+    border-top: 3px solid #4caf50;
+    padding: 40px 36px 24px 36px;
+    margin-top: 24px;
+    box-shadow: 0 -4px 30px rgba(45,122,45,0.15);
 ">
-    <p style="font-size:1.15em; font-weight:700; color:#4caf50; margin-bottom:4px;">
-        🌿 Chatake Greenworks
-    </p>
-    <p style="font-size:0.85em; color:#a5d6a7; margin-bottom:2px;">
-        A Division of <strong style="color:#c8e6c9;">Chatake Innoworks Pvt. Ltd.</strong>
-    </p>
-    <p style="font-size:0.82em; color:#81c784; margin-bottom:8px;">
-        Solapur, Maharashtra, India &nbsp;|&nbsp; Sustainable Technology &amp; AI Research
-    </p>
-    <p style="font-size:0.88em; color:#a5d6a7; margin-bottom:4px;">
-        📧 <a href="mailto:admin@chatakeinnoworks.com" style="color:#69f0ae; text-decoration:none;">admin@chatakeinnoworks.com</a>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        🌐 <a href="https://internship.chatakeinnoworks.com" target="_blank" style="color:#69f0ae; text-decoration:none;">internship.chatakeinnoworks.com</a>
-    </p>
-    <p style="font-size:0.78em; color:#558b2f; margin-top:10px; margin-bottom:0;">
-        🏆 GFIS v2.0 &nbsp;|&nbsp; Green Fuel Intelligence System &nbsp;|&nbsp; DIPEX 2026
-    </p>
+    <!-- Top grid -->
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:32px;">
+
+        <!-- Brand column -->
+        <div>
+            <div style="font-size:1.8em;margin-bottom:8px;">🌿</div>
+            <div style="color:#4caf50;font-weight:800;font-size:1.1em;letter-spacing:-0.3px;margin-bottom:4px;">
+                Chatake Greenworks
+            </div>
+            <div style="color:#a5d6a7;font-size:0.78em;margin-bottom:12px;line-height:1.6;">
+                Sustainable Energy Innovation Unit<br>
+                <em style="color:#558b2f;">A Division of Chatake Innoworks Pvt. Ltd.</em>
+            </div>
+            <div style="color:#81c784;font-size:0.75em;line-height:1.8;">
+                📍 Nehru Industrial Estate, Damani Nagar<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Solapur – 413001, Maharashtra, India<br>
+                📞 <a href="tel:+918600182228" style="color:#69f0ae;text-decoration:none;">+91 8600182228</a><br>
+                📧 <a href="mailto:admin@chatakeinnoworks.com" style="color:#69f0ae;text-decoration:none;">admin@chatakeinnoworks.com</a>
+            </div>
+        </div>
+
+        <!-- Platform column -->
+        <div>
+            <div style="color:#4caf50;font-weight:700;font-size:0.82em;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;">Platform</div>
+            <div style="line-height:2.2;">
+                <a href="https://green-fuel-intelligence--59klled.gamma.site/" target="_blank" style="color:#a5d6a7;font-size:0.78em;text-decoration:none;display:block;">📑 Presentation</a>
+                <a href="https://internship.chatakeinnoworks.com" target="_blank" style="color:#a5d6a7;font-size:0.78em;text-decoration:none;display:block;">🎓 Internship Portal</a>
+                <a href="https://about.chatakeinnoworks.com" target="_blank" style="color:#a5d6a7;font-size:0.78em;text-decoration:none;display:block;">🌐 Company Profile</a>
+                <a href="https://www.chatakeinnoworks.com" target="_blank" style="color:#a5d6a7;font-size:0.78em;text-decoration:none;display:block;">🏢 Main Website</a>
+            </div>
+        </div>
+
+        <!-- Project column -->
+        <div>
+            <div style="color:#4caf50;font-weight:700;font-size:0.82em;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;">Project Team</div>
+            <div style="line-height:2.2;color:#a5d6a7;font-size:0.78em;">
+                <div>Ms. Tanishka Deshpande</div>
+                <div>Ms. Anushka Hitanalli</div>
+                <div>Ms. Aditi Gangji</div>
+                <div>Ms. Shruti Hiremath</div>
+            </div>
+        </div>
+
+        <!-- Connect column -->
+        <div>
+            <div style="color:#4caf50;font-weight:700;font-size:0.82em;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;">Connect</div>
+            <div style="line-height:2.2;">
+                <a href="https://www.linkedin.com/company/chatakeinnoworks" target="_blank" style="color:#a5d6a7;font-size:0.78em;text-decoration:none;display:block;">💼 LinkedIn</a>
+                <a href="https://www.facebook.com/chatakeinnoworks" target="_blank" style="color:#a5d6a7;font-size:0.78em;text-decoration:none;display:block;">📘 Facebook</a>
+                <a href="https://open.spotify.com/show/1zeA2xxVg5kGOV9bhAGigQ" target="_blank" style="color:#a5d6a7;font-size:0.78em;text-decoration:none;display:block;">🎧 Podcast</a>
+                <a href="mailto:admin@chatakeinnoworks.com" style="color:#a5d6a7;font-size:0.78em;text-decoration:none;display:block;">✉️ Contact Us</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div style="
+        border-top: 1px solid rgba(45,122,45,0.4);
+        padding-top: 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    ">
+        <div style="color:#2d5a2d;font-size:0.72em;">
+            © 2026 Chatake Innoworks Pvt. Ltd. All rights reserved. &nbsp;|&nbsp; MindforgeAI Research Division
+        </div>
+        <div style="color:#4caf50;font-size:0.72em;font-weight:600;">
+            🏆 GFIS v2.0 &nbsp;·&nbsp; Green Fuel Intelligence System &nbsp;·&nbsp; DIPEX 2026
+        </div>
+    </div>
 </div>
 """, unsafe_allow_html=True)
