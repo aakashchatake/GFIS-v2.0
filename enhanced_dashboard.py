@@ -349,9 +349,9 @@ if page == "🌿 Home":
                     📧 <a href="mailto:admin@chatakeinnoworks.com" style="color:#10b981;text-decoration:none;font-weight:500;">admin@chatakeinnoworks.com</a>
                 </div>
             </div>
-                <img src="https://internship.chatakeinnoworks.com/assets/CI_Learning_Hub_2026.png"
-                 style="width:100%;border-radius:10px;margin-top:16px;margin-bottom:8px;opacity:0.85;"
-                 alt="Chatake Innoworks Learning Hub"/>
+                <img src="https://raw.githubusercontent.com/aakashchatake/GFIS-v2.0/main/assets/CI_Vision_2029.png"
+                 style="width:100%;border-radius:10px;margin-top:16px;margin-bottom:8px;"
+                 alt="Chatake Innoworks Office"/>
             <div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.07);">
                 <a href="https://about.chatakeinnoworks.com" target="_blank"
                    style="color:#10b981;font-size:0.76em;text-decoration:none;font-weight:600;margin-right:16px;">
@@ -1945,6 +1945,9 @@ st.markdown("""
                 📞 <a href="tel:+918600182228" style="color:#69f0ae;text-decoration:none;">+91 8600182228</a><br>
                 📧 <a href="mailto:admin@chatakeinnoworks.com" style="color:#69f0ae;text-decoration:none;">admin@chatakeinnoworks.com</a>
             </div>
+            <img src="https://raw.githubusercontent.com/aakashchatake/GFIS-v2.0/main/assets/CI_Vision_2029.png"
+                 style="width:100%;border-radius:8px;margin-top:14px;"
+                 alt="Chatake Innoworks Office" />
     </td>
 
         <!-- Platform column -->
