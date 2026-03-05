@@ -18,6 +18,10 @@ st.set_page_config(
 # Custom CSS
 st.markdown("""
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        html, body, [class*="css"] {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
         .metric-box {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 20px;
@@ -42,6 +46,44 @@ st.markdown("""
             border-left: 4px solid #0f0;
             padding: 10px;
             margin: 10px 0;
+        }
+        /* Home page premium styles */
+        .gfis-hero {
+            background: linear-gradient(160deg, #050c05 0%, #0a1a0a 40%, #0f240f 100%);
+            border-radius: 20px;
+            padding: 64px 48px;
+            text-align: center;
+            border: 1px solid rgba(16,185,129,0.2);
+            margin-bottom: 28px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(16,185,129,0.1);
+        }
+        .gfis-module-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-top: 3px solid #10b981;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            min-height: 140px;
+            transition: box-shadow 0.2s ease;
+        }
+        .gfis-module-card:hover {
+            box-shadow: 0 8px 24px rgba(16,185,129,0.12);
+        }
+        .gfis-stat-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 24px 20px;
+            text-align: center;
+        }
+        .gfis-team-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-left: 4px solid #10b981;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 10px;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -123,182 +165,228 @@ st.sidebar.markdown("""
 
 # ==================== PAGE: HOME ====================
 if page == "🌿 Home":
-    # Hero Section
+
+    # ── Hero ─────────────────────────────────────────────────────────────────
     st.markdown("""
-    <div style="
-        background: linear-gradient(135deg, #0a1f0a 0%, #0d2e0d 50%, #1a3d1a 100%);
-        border-radius: 16px;
-        padding: 50px 40px;
-        text-align: center;
-        border: 1px solid #2d7a2d;
-        margin-bottom: 24px;
-        box-shadow: 0 8px 32px rgba(45,122,45,0.2);
-    ">
-        <div style="font-size:3.5em;margin-bottom:10px;">🌿</div>
-        <h1 style="font-size:2.8em;font-weight:800;color:#4caf50;margin:0 0 10px 0;letter-spacing:-1px;">
-            Green Fuel Intelligence System
+    <div class="gfis-hero">
+        <div style="display:inline-block;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.3);
+             border-radius:100px;padding:6px 18px;margin-bottom:20px;">
+            <span style="color:#10b981;font-size:0.75em;font-weight:600;letter-spacing:2px;text-transform:uppercase;">
+                🏆 &nbsp;DIPEX 2026 &nbsp;·&nbsp; AIML Research Project
+            </span>
+        </div>
+        <h1 style="font-size:2.6em;font-weight:800;color:#ffffff;margin:0 0 12px 0;
+                   letter-spacing:-1.5px;line-height:1.15;">
+            Green Fuel Intelligence<br>
+            <span style="color:#10b981;">System</span>
         </h1>
-        <p style="font-size:1.3em;color:#a5d6a7;margin:0 0 6px 0;font-weight:400;">
-            AI-Powered Biogas Production Optimization Platform
+        <p style="font-size:1.05em;color:#94a3b8;margin:0 0 6px 0;font-weight:400;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.7;">
+            AI-Powered Biogas Production Optimization Platform — Real-time IoT monitoring,
+            machine learning predictions, carbon credit analytics, and ESG intelligence.
         </p>
-        <p style="font-size:0.95em;color:#558b2f;margin:0 0 30px 0;">
-            Real-time IoT Monitoring · Machine Learning Predictions · Carbon Credit Analytics · ESG Intelligence
-        </p>
-        <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
-            <a href="https://green-fuel-intelligence--59klled.gamma.site/" target="_blank" style="
-                background:#4caf50;color:white;padding:12px 28px;border-radius:8px;
-                text-decoration:none;font-weight:700;font-size:0.95em;
-                box-shadow:0 4px 15px rgba(76,175,80,0.4);display:inline-block;
-            ">📊 View Full Presentation</a>
-            <a href="#" onclick="return false;" style="
-                background:transparent;color:#4caf50;padding:12px 28px;border-radius:8px;
-                text-decoration:none;font-weight:700;font-size:0.95em;
-                border:2px solid #4caf50;display:inline-block;
-            ">🚀 DIPEX 2026</a>
+        <div style="margin-top:28px;display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+            <a href="https://green-fuel-intelligence--59klled.gamma.site/" target="_blank"
+               style="background:#10b981;color:#fff;padding:13px 30px;border-radius:8px;
+                      text-decoration:none;font-weight:700;font-size:0.9em;
+                      box-shadow:0 4px 20px rgba(16,185,129,0.4);letter-spacing:0.3px;">
+               📊 &nbsp;View Presentation
+            </a>
+            <a href="https://internship.chatakeinnoworks.com" target="_blank"
+               style="background:rgba(255,255,255,0.07);color:#e2e8f0;padding:13px 30px;
+                      border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9em;
+                      border:1px solid rgba(255,255,255,0.15);letter-spacing:0.3px;">
+               🌐 &nbsp;Chatake Innoworks
+            </a>
+        </div>
+        <div style="margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.07);
+                    display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:700px;margin-left:auto;margin-right:auto;">
+            <div style="text-align:center;padding:8px 0;border-right:1px solid rgba(255,255,255,0.07);">
+                <div style="font-size:1.4em;font-weight:800;color:#10b981;">12</div>
+                <div style="font-size:0.7em;color:#64748b;font-weight:500;letter-spacing:0.5px;">DASHBOARDS</div>
+            </div>
+            <div style="text-align:center;padding:8px 0;border-right:1px solid rgba(255,255,255,0.07);">
+                <div style="font-size:1.4em;font-weight:800;color:#10b981;">IoT</div>
+                <div style="font-size:0.7em;color:#64748b;font-weight:500;letter-spacing:0.5px;">REAL-TIME DATA</div>
+            </div>
+            <div style="text-align:center;padding:8px 0;border-right:1px solid rgba(255,255,255,0.07);">
+                <div style="font-size:1.4em;font-weight:800;color:#10b981;">ML</div>
+                <div style="font-size:0.7em;color:#64748b;font-weight:500;letter-spacing:0.5px;">PREDICTIONS</div>
+            </div>
+            <div style="text-align:center;padding:8px 0;">
+                <div style="font-size:1.4em;font-weight:800;color:#10b981;">ESG</div>
+                <div style="font-size:0.7em;color:#64748b;font-weight:500;letter-spacing:0.5px;">CARBON CREDITS</div>
+            </div>
         </div>
     </div>
     """, unsafe_allow_html=True)
 
+    # ── Presentation Banner ───────────────────────────────────────────────────
     st.markdown("""
-    <div style="background:#fff3e0;border-left:4px solid #ff9800;border-radius:6px;padding:14px 20px;margin-bottom:24px;">
-        <strong style="color:#e65100;">📌 DIPEX 2026 Submission</strong> &nbsp;|&nbsp;
-        <span style="color:#bf360c;">Use the sidebar to navigate all 12 dashboard modules. Start with <strong>Overview</strong> for a summary.</span>
-        &nbsp;&nbsp;
+    <div style="background:#fefce8;border:1px solid #fde047;border-left:4px solid #f59e0b;
+                border-radius:10px;padding:14px 20px;margin-bottom:28px;
+                display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px;">
+        <div>
+            <span style="font-weight:700;color:#92400e;font-size:0.9em;">📌 DIPEX 2026 Showcase</span>
+            <span style="color:#78350f;font-size:0.85em;margin-left:10px;">
+                Navigate all 12 dashboard modules from the sidebar. Start with <strong>Overview</strong>.
+            </span>
+        </div>
         <a href="https://green-fuel-intelligence--59klled.gamma.site/" target="_blank"
-           style="color:#1565c0;font-weight:600;text-decoration:none;">
-            View Gamma Presentation →
+           style="background:#f59e0b;color:#fff;padding:8px 18px;border-radius:6px;
+                  text-decoration:none;font-weight:700;font-size:0.82em;white-space:nowrap;">
+            Open Presentation →
         </a>
     </div>
     """, unsafe_allow_html=True)
 
-    # Dashboard Navigation Cards
-    st.markdown("### 📋 Dashboard Modules")
-    st.markdown("<p style='color:#666;margin-bottom:20px;'>12 modules covering the full GFIS intelligence stack. Select any from the sidebar.</p>", unsafe_allow_html=True)
+    # ── Dashboard Modules ─────────────────────────────────────────────────────
+    st.markdown("""
+    <div style="margin-bottom:8px;">
+        <span style="font-size:1.25em;font-weight:700;color:#111827;">Dashboard Modules</span>
+        <span style="font-size:0.85em;color:#6b7280;margin-left:12px;">
+            12 AI-powered modules — select any from the sidebar
+        </span>
+    </div>
+    """, unsafe_allow_html=True)
 
     pages_info = [
-        ("🏠", "Overview", "System-wide KPIs, live status, and platform summary. Start here for a full picture."),
-        ("📊", "Real-time Monitoring", "Live digester telemetry — temperature, pressure, pH, methane concentration."),
-        ("🎯", "Production Analytics", "Biogas yield trends, feedstock efficiency, and production forecasting."),
-        ("🤖", "ML Predictions", "XGBoost/LSTM yield predictions, anomaly detection, and feedstock classification."),
-        ("🗺️", "Geographic Analysis", "Spatial distribution of GFIS-monitored plants across Maharashtra."),
-        ("⚡", "Revenue Tracking", "Financial analytics — SaaS revenue, carbon credit income, ROI calculations."),
-        ("🔧", "System Health", "Sensor diagnostics, IoT gateway uptime, maintenance schedule alerts."),
-        ("📈", "Advanced Analytics", "Correlation matrices, process optimization insights, statistical deep-dives."),
-        ("🏢", "Enterprise Suite", "Predictive maintenance engine, financial intelligence, team collaboration hub."),
-        ("🎯", "Executive Command Center", "C-suite overview — strategic KPIs, market positioning, policy alerts."),
-        ("🌍", "Sustainability Hub", "ESG metrics, carbon footprint tracking, SATAT/GOBARdhan compliance."),
-        ("⚙️", "Operations Center", "Day-to-day plant operations, work order management, SOP compliance."),
+        ("🏠", "Overview", "System-wide KPIs, live plant status, and platform summary."),
+        ("📊", "Real-time Monitoring", "Live digester telemetry — temperature, pressure, pH, CH₄."),
+        ("🎯", "Production Analytics", "Biogas yield trends, feedstock efficiency, forecasting."),
+        ("🤖", "ML Predictions", "XGBoost/LSTM predictions, anomaly detection, feedstock AI."),
+        ("🗺️", "Geographic Analysis", "Spatial mapping of plants across Maharashtra."),
+        ("⚡", "Revenue Tracking", "SaaS revenue, carbon credit income, ROI analytics."),
+        ("🔧", "System Health", "Sensor diagnostics, IoT uptime, maintenance alerts."),
+        ("📈", "Advanced Analytics", "Correlation matrices, optimization, statistical deep-dives."),
+        ("🏢", "Enterprise Suite", "Predictive maintenance, financial intelligence, collaboration."),
+        ("🎯", "Executive Command", "Strategic KPIs, market positioning, policy dashboards."),
+        ("🌍", "Sustainability Hub", "ESG metrics, carbon footprint, GOBARdhan compliance."),
+        ("⚙️", "Operations Center", "Plant ops, work orders, SOP management."),
     ]
 
-    cols = st.columns(3)
+    col1, col2, col3 = st.columns(3)
+    cols = [col1, col2, col3]
     for i, (icon, name, desc) in enumerate(pages_info):
         with cols[i % 3]:
             st.markdown(f"""
-            <div style="
-                background:linear-gradient(135deg,#f1f8e9,#e8f5e9);
-                border:1px solid #a5d6a7;
-                border-top:3px solid #4caf50;
-                border-radius:10px;
-                padding:18px;
-                margin-bottom:16px;
-                min-height:130px;
-            ">
-                <div style="font-size:1.6em;margin-bottom:6px;">{icon}</div>
-                <div style="font-weight:700;color:#1b5e20;font-size:0.92em;margin-bottom:6px;">{name}</div>
-                <div style="color:#555;font-size:0.78em;line-height:1.5;">{desc}</div>
+            <div class="gfis-module-card">
+                <div style="font-size:1.5em;margin-bottom:8px;">{icon}</div>
+                <div style="font-weight:700;color:#111827;font-size:0.9em;margin-bottom:6px;">{name}</div>
+                <div style="color:#6b7280;font-size:0.78em;line-height:1.55;">{desc}</div>
             </div>
             """, unsafe_allow_html=True)
 
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<div style='height:12px'></div>", unsafe_allow_html=True)
+    st.divider()
 
-    # Team + Company two-column layout
-    col1, col2 = st.columns([1, 1], gap="large")
+    # ── Team + Company ────────────────────────────────────────────────────────
+    col_team, col_company = st.columns([1, 1], gap="large")
 
-    with col1:
-        st.markdown("### 👩‍💻 Project Team")
+    with col_team:
+        st.markdown("""
+        <div style="margin-bottom:16px;">
+            <span style="font-size:1.1em;font-weight:700;color:#111827;">Project Team</span>
+            <span style="display:inline-block;background:#f0fdf4;color:#15803d;font-size:0.72em;
+                         font-weight:600;padding:3px 10px;border-radius:100px;margin-left:10px;
+                         border:1px solid #bbf7d0;">DIPEX 2026</span>
+        </div>
+        """, unsafe_allow_html=True)
         team = [
-            ("Ms. Tanishka Deshpande", "AI/ML Engineering"),
-            ("Ms. Anushka Hitanalli", "Cloud Architecture"),
-            ("Ms. Aditi Gangji", "Data Analytics"),
-            ("Ms. Shruti Hiremath", "Systems Integration"),
+            ("Ms. Tanishka Deshpande", "AI / ML Engineering", "🔬"),
+            ("Ms. Anushka Hitanalli",  "Cloud Architecture",  "☁️"),
+            ("Ms. Aditi Gangji",       "Data Analytics",      "📊"),
+            ("Ms. Shruti Hiremath",    "Systems Integration", "⚙️"),
         ]
-        for name, role in team:
+        for name, role, icon in team:
             st.markdown(f"""
-            <div style="
-                background:linear-gradient(135deg,#e8f5e9,#f1f8e9);
-                border-left:4px solid #4caf50;
-                border-radius:6px;
-                padding:12px 16px;
-                margin-bottom:10px;
-                display:flex;
-                align-items:center;
-                gap:12px;
-            ">
-                <span style="font-size:1.5em;">👩‍🔬</span>
-                <div>
-                    <div style="font-weight:700;color:#1b5e20;font-size:0.9em;">{name}</div>
-                    <div style="color:#558b2f;font-size:0.78em;">{role}</div>
+            <div class="gfis-team-card">
+                <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:center;">
+                    <div style="font-size:1.4em;text-align:center;">{icon}</div>
+                    <div>
+                        <div style="font-weight:600;color:#111827;font-size:0.88em;">{name}</div>
+                        <div style="color:#6b7280;font-size:0.76em;margin-top:2px;">{role}</div>
+                    </div>
                 </div>
             </div>
             """, unsafe_allow_html=True)
 
-    with col2:
-        st.markdown("### 🏢 Strategic Partner")
+    with col_company:
         st.markdown("""
-        <div style="
-            background: linear-gradient(135deg, #0d2e0d, #1a3d1a);
-            border: 1px solid #2d7a2d;
-            border-radius: 12px;
-            padding: 24px;
-            color: white;
-        ">
-            <div style="font-size:1.8em;margin-bottom:8px;">🌿</div>
-            <div style="color:#4caf50;font-weight:800;font-size:1.1em;margin-bottom:2px;">Chatake Greenworks</div>
-            <div style="color:#a5d6a7;font-size:0.82em;margin-bottom:14px;">Sustainable Energy Innovation Unit<br>
-            <em style="color:#558b2f;">A Division of Chatake Innoworks Pvt. Ltd.</em></div>
-
-            <div style="border-top:1px solid #2d5a2d;padding-top:14px;">
-                <div style="color:#81c784;font-size:0.8em;margin-bottom:6px;">
+        <div style="margin-bottom:16px;">
+            <span style="font-size:1.1em;font-weight:700;color:#111827;">Strategic Partner</span>
+        </div>
+        <div style="background:linear-gradient(160deg,#050c05 0%,#0a1a0a 100%);
+                    border:1px solid rgba(16,185,129,0.25);border-radius:16px;
+                    padding:28px;color:white;
+                    box-shadow:0 10px 40px rgba(0,0,0,0.3);">
+            <div style="margin-bottom:16px;">
+                <div style="font-size:1.3em;font-weight:800;color:#ffffff;letter-spacing:-0.5px;">
+                    Chatake Greenworks
+                </div>
+                <div style="font-size:0.8em;color:#10b981;font-weight:500;margin-top:2px;">
+                    Sustainable Energy Innovation Unit
+                </div>
+                <div style="font-size:0.75em;color:#475569;margin-top:3px;font-style:italic;">
+                    A Division of Chatake Innoworks Pvt. Ltd.
+                </div>
+            </div>
+            <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:16px;font-size:0.78em;line-height:2.1;">
+                <div style="color:#94a3b8;">
                     📍 Nehru Industrial Estate, Damani Nagar<br>
                     &nbsp;&nbsp;&nbsp;&nbsp;Solapur – 413001, Maharashtra, India
                 </div>
-                <div style="color:#81c784;font-size:0.8em;margin-bottom:6px;">
-                    📞 <a href="tel:+918600182228" style="color:#69f0ae;text-decoration:none;">+91 8600182228</a>
+                <div style="color:#94a3b8;margin-top:4px;">
+                    📞 <a href="tel:+918600182228" style="color:#10b981;text-decoration:none;font-weight:500;">+91 8600182228</a>
+                    &nbsp;&nbsp;
+                    📧 <a href="mailto:admin@chatakeinnoworks.com" style="color:#10b981;text-decoration:none;font-weight:500;">admin@chatakeinnoworks.com</a>
                 </div>
-                <div style="color:#81c784;font-size:0.8em;margin-bottom:6px;">
-                    📧 <a href="mailto:admin@chatakeinnoworks.com" style="color:#69f0ae;text-decoration:none;">admin@chatakeinnoworks.com</a>
-                </div>
-                <div style="font-size:0.8em;margin-top:10px;">
-                    <a href="https://about.chatakeinnoworks.com" target="_blank" style="color:#69f0ae;text-decoration:none;margin-right:14px;">🌐 About Us</a>
-                    <a href="https://internship.chatakeinnoworks.com" target="_blank" style="color:#69f0ae;text-decoration:none;margin-right:14px;">🎓 Internships</a>
-                    <a href="https://www.linkedin.com/company/chatakeinnoworks" target="_blank" style="color:#69f0ae;text-decoration:none;">💼 LinkedIn</a>
-                </div>
+            </div>
+            <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.07);">
+                <a href="https://about.chatakeinnoworks.com" target="_blank"
+                   style="color:#10b981;font-size:0.76em;text-decoration:none;font-weight:600;margin-right:16px;">
+                   🌐 Corporate Profile
+                </a>
+                <a href="https://internship.chatakeinnoworks.com" target="_blank"
+                   style="color:#10b981;font-size:0.76em;text-decoration:none;font-weight:600;margin-right:16px;">
+                   🎓 Internship Portal
+                </a>
+                <a href="https://www.linkedin.com/company/chatakeinnoworks" target="_blank"
+                   style="color:#10b981;font-size:0.76em;text-decoration:none;font-weight:600;">
+                   💼 LinkedIn
+                </a>
             </div>
         </div>
         """, unsafe_allow_html=True)
 
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<div style='height:12px'></div>", unsafe_allow_html=True)
+    st.divider()
 
-    # Gamma Presentation embed link / card
+    # ── Presentation Card ─────────────────────────────────────────────────────
     st.markdown("""
-    <div style="
-        background:linear-gradient(135deg,#1a237e,#283593);
-        border-radius:12px;
-        padding:30px 36px;
-        text-align:center;
-        border:1px solid #3949ab;
-        margin-bottom:10px;
-    ">
-        <div style="font-size:2em;margin-bottom:8px;">📑</div>
-        <div style="color:#e8eaf6;font-size:1.2em;font-weight:700;margin-bottom:6px;">Full Research Presentation</div>
-        <div style="color:#9fa8da;font-size:0.88em;margin-bottom:20px;">
-            Strategic AI roadmap, market analysis, carbon credit framework, technical architecture, and financial projections.
+    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;
+                padding:36px 40px;text-align:center;margin-top:4px;">
+        <div style="display:inline-block;background:#f0fdf4;border:1px solid #bbf7d0;
+                    border-radius:100px;padding:5px 14px;margin-bottom:14px;">
+            <span style="color:#15803d;font-size:0.72em;font-weight:700;letter-spacing:1px;text-transform:uppercase;">
+                Research Presentation
+            </span>
         </div>
-        <a href="https://green-fuel-intelligence--59klled.gamma.site/" target="_blank" style="
-            background:#3f51b5;color:white;padding:12px 32px;border-radius:8px;
-            text-decoration:none;font-weight:700;font-size:0.95em;
-            box-shadow:0 4px 15px rgba(63,81,181,0.5);
-        ">🔗 Open Gamma Presentation</a>
+        <div style="font-size:1.35em;font-weight:700;color:#111827;margin-bottom:8px;">
+            Full GFIS Strategic Roadmap
+        </div>
+        <div style="font-size:0.85em;color:#6b7280;max-width:550px;margin:0 auto 22px;line-height:1.65;">
+            Market analysis · Carbon credit framework · ATEX IoT architecture ·
+            MLOps pipeline · SATAT integration · Financial projections
+        </div>
+        <a href="https://green-fuel-intelligence--59klled.gamma.site/" target="_blank"
+           style="background:#10b981;color:#fff;padding:13px 34px;border-radius:8px;
+                  text-decoration:none;font-weight:700;font-size:0.9em;
+                  box-shadow:0 4px 20px rgba(16,185,129,0.35);letter-spacing:0.3px;">
+            Open Presentation &nbsp;→
+        </a>
+        <div style="font-size:0.72em;color:#9ca3af;margin-top:14px;">
+            Hosted on Gamma &nbsp;·&nbsp; Chatake Greenworks &nbsp;·&nbsp; DIPEX 2026
+        </div>
     </div>
     """, unsafe_allow_html=True)
 
