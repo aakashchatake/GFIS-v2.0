@@ -112,9 +112,10 @@ st.sidebar.info("""
 Green Fuel Intelligence System
 *AI-Powered Biogas Optimization*
 
-📍 Location: Solapur, Maharashtra
+📍 Solapur, Maharashtra, India
 🏢 DIPEX 2026 Submission
-👥 Computer Science Dept
+🌿 Chatake Greenworks Division
+🔗 [internship.chatakeinnoworks.com](https://internship.chatakeinnoworks.com)
 """)
 
 # ==================== PAGE: OVERVIEW ====================
@@ -1633,8 +1634,30 @@ elif page == "⚙️ Operations Center":
 
 st.markdown("---")
 st.markdown("""
-<div style="text-align: center; color: #666;">
-<p>🌿 GFIS v2.0 | Green Fuel Intelligence System | DIPEX 2026 Submission</p>
-<p>Department of Computer Science | Solapur, Maharashtra</p>
+<div style="
+    text-align: center;
+    padding: 24px 20px 12px 20px;
+    background: linear-gradient(135deg, #1a2e1a 0%, #0d1f0d 100%);
+    border-radius: 10px;
+    border-top: 3px solid #2d7a2d;
+    margin-top: 20px;
+">
+    <p style="font-size:1.15em; font-weight:700; color:#4caf50; margin-bottom:4px;">
+        🌿 Chatake Greenworks
+    </p>
+    <p style="font-size:0.85em; color:#a5d6a7; margin-bottom:2px;">
+        A Division of <strong style="color:#c8e6c9;">Chatake Innoworks Pvt. Ltd.</strong>
+    </p>
+    <p style="font-size:0.82em; color:#81c784; margin-bottom:8px;">
+        Solapur, Maharashtra, India &nbsp;|&nbsp; Sustainable Technology &amp; AI Research
+    </p>
+    <p style="font-size:0.88em; color:#a5d6a7; margin-bottom:4px;">
+        📧 <a href="mailto:admin@chatakeinnoworks.com" style="color:#69f0ae; text-decoration:none;">admin@chatakeinnoworks.com</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        🌐 <a href="https://internship.chatakeinnoworks.com" target="_blank" style="color:#69f0ae; text-decoration:none;">internship.chatakeinnoworks.com</a>
+    </p>
+    <p style="font-size:0.78em; color:#558b2f; margin-top:10px; margin-bottom:0;">
+        🏆 GFIS v2.0 &nbsp;|&nbsp; Green Fuel Intelligence System &nbsp;|&nbsp; DIPEX 2026
+    </p>
 </div>
 """, unsafe_allow_html=True)
