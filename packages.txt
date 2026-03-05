@@ -1,9 +1,13 @@
 build-essential
 python3-dev
-libatlas-base-dev
+libopenblas-dev
 gfortran
 liblapack-dev
 libblas-dev
+libjpeg-dev
+libpng-dev
+libtiff-dev
+git
 libjpeg-dev
 libpng-dev
 libtiff-dev
