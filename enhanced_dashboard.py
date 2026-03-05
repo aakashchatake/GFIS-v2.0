@@ -184,59 +184,65 @@ if page == "🌿 Home":
             AI-Powered Biogas Production Optimization Platform — Real-time IoT monitoring,
             machine learning predictions, carbon credit analytics, and ESG intelligence.
         </p>
-        <div style="margin-top:28px;display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+        <div style="margin-top:28px;text-align:center;">
             <a href="https://green-fuel-intelligence--59klled.gamma.site/" target="_blank"
-               style="background:#10b981;color:#fff;padding:13px 30px;border-radius:8px;
-                      text-decoration:none;font-weight:700;font-size:0.9em;
+               style="display:inline-block;background:#10b981;color:#fff;padding:13px 30px;border-radius:8px;
+                      text-decoration:none;font-weight:700;font-size:0.9em;margin:4px 6px;
                       box-shadow:0 4px 20px rgba(16,185,129,0.4);letter-spacing:0.3px;">
                📊 &nbsp;View Presentation
             </a>
             <a href="https://internship.chatakeinnoworks.com" target="_blank"
-               style="background:rgba(255,255,255,0.07);color:#e2e8f0;padding:13px 30px;
-                      border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9em;
+               style="display:inline-block;background:rgba(255,255,255,0.07);color:#e2e8f0;padding:13px 30px;
+                      border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9em;margin:4px 6px;
                       border:1px solid rgba(255,255,255,0.15);letter-spacing:0.3px;">
                🌐 &nbsp;Chatake Innoworks
             </a>
         </div>
-        <div style="margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.07);
-                    display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:700px;margin-left:auto;margin-right:auto;">
-            <div style="text-align:center;padding:8px 0;border-right:1px solid rgba(255,255,255,0.07);">
+        <div style="margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.07);">
+        <table width="100%" style="border-collapse:collapse;max-width:700px;margin:0 auto;">
+          <tr>
+            <td style="text-align:center;padding:8px 0;border-right:1px solid rgba(255,255,255,0.07);width:25%;">
                 <div style="font-size:1.4em;font-weight:800;color:#10b981;">12</div>
                 <div style="font-size:0.7em;color:#64748b;font-weight:500;letter-spacing:0.5px;">DASHBOARDS</div>
-            </div>
-            <div style="text-align:center;padding:8px 0;border-right:1px solid rgba(255,255,255,0.07);">
+            </td>
+            <td style="text-align:center;padding:8px 0;border-right:1px solid rgba(255,255,255,0.07);width:25%;">
                 <div style="font-size:1.4em;font-weight:800;color:#10b981;">IoT</div>
                 <div style="font-size:0.7em;color:#64748b;font-weight:500;letter-spacing:0.5px;">REAL-TIME DATA</div>
-            </div>
-            <div style="text-align:center;padding:8px 0;border-right:1px solid rgba(255,255,255,0.07);">
+            </td>
+            <td style="text-align:center;padding:8px 0;border-right:1px solid rgba(255,255,255,0.07);width:25%;">
                 <div style="font-size:1.4em;font-weight:800;color:#10b981;">ML</div>
                 <div style="font-size:0.7em;color:#64748b;font-weight:500;letter-spacing:0.5px;">PREDICTIONS</div>
-            </div>
-            <div style="text-align:center;padding:8px 0;">
+            </td>
+            <td style="text-align:center;padding:8px 0;width:25%;">
                 <div style="font-size:1.4em;font-weight:800;color:#10b981;">ESG</div>
                 <div style="font-size:0.7em;color:#64748b;font-weight:500;letter-spacing:0.5px;">CARBON CREDITS</div>
-            </div>
+            </td>
+          </tr>
+        </table>
         </div>
     </div>
     """, unsafe_allow_html=True)
 
     # ── Presentation Banner ───────────────────────────────────────────────────
     st.markdown("""
-    <div style="background:#fefce8;border:1px solid #fde047;border-left:4px solid #f59e0b;
-                border-radius:10px;padding:14px 20px;margin-bottom:28px;
-                display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px;">
-        <div>
+    <table width="100%" style="background:#fefce8;border:1px solid #fde047;border-left:4px solid #f59e0b;
+                border-radius:10px;padding:0;margin-bottom:28px;border-collapse:collapse;">
+      <tr>
+        <td style="padding:14px 20px;">
             <span style="font-weight:700;color:#92400e;font-size:0.9em;">📌 DIPEX 2026 Showcase</span>
             <span style="color:#78350f;font-size:0.85em;margin-left:10px;">
                 Navigate all 12 dashboard modules from the sidebar. Start with <strong>Overview</strong>.
             </span>
-        </div>
-        <a href="https://green-fuel-intelligence--59klled.gamma.site/" target="_blank"
-           style="background:#f59e0b;color:#fff;padding:8px 18px;border-radius:6px;
-                  text-decoration:none;font-weight:700;font-size:0.82em;white-space:nowrap;">
-            Open Presentation →
-        </a>
-    </div>
+        </td>
+        <td style="padding:14px 20px;white-space:nowrap;">
+            <a href="https://green-fuel-intelligence--59klled.gamma.site/" target="_blank"
+               style="display:inline-block;background:#f59e0b;color:#fff;padding:8px 18px;border-radius:6px;
+                      text-decoration:none;font-weight:700;font-size:0.82em;">
+                Open Presentation →
+            </a>
+        </td>
+      </tr>
+    </table>
     """, unsafe_allow_html=True)
 
     # ── Dashboard Modules ─────────────────────────────────────────────────────
@@ -300,13 +306,15 @@ if page == "🌿 Home":
         for name, role, icon in team:
             st.markdown(f"""
             <div class="gfis-team-card">
-                <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:center;">
-                    <div style="font-size:1.4em;text-align:center;">{icon}</div>
-                    <div>
+                <table style="border-collapse:collapse;width:100%;">
+                  <tr>
+                    <td width="38" style="font-size:1.4em;text-align:center;vertical-align:middle;padding-right:10px;">{icon}</td>
+                    <td style="vertical-align:middle;">
                         <div style="font-weight:600;color:#111827;font-size:0.88em;">{name}</div>
                         <div style="color:#6b7280;font-size:0.76em;margin-top:2px;">{role}</div>
-                    </div>
-                </div>
+                    </td>
+                  </tr>
+                </table>
             </div>
             """, unsafe_allow_html=True)
 
@@ -341,7 +349,10 @@ if page == "🌿 Home":
                     📧 <a href="mailto:admin@chatakeinnoworks.com" style="color:#10b981;text-decoration:none;font-weight:500;">admin@chatakeinnoworks.com</a>
                 </div>
             </div>
-            <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.07);">
+                <img src="https://internship.chatakeinnoworks.com/assets/CI_Learning_Hub_2026.png"
+                 style="width:100%;border-radius:10px;margin-top:16px;margin-bottom:8px;opacity:0.85;"
+                 alt="Chatake Innoworks Learning Hub"/>
+            <div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.07);">
                 <a href="https://about.chatakeinnoworks.com" target="_blank"
                    style="color:#10b981;font-size:0.76em;text-decoration:none;font-weight:600;margin-right:16px;">
                    🌐 Corporate Profile
@@ -1916,10 +1927,10 @@ st.markdown("""
     box-shadow: 0 -4px 30px rgba(45,122,45,0.15);
 ">
     <!-- Top grid -->
-    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:32px;">
+    <table width="100%" style="border-collapse:collapse;margin-bottom:32px;"><tr valign="top">
 
         <!-- Brand column -->
-        <div>
+    <td width="38%" style="padding-right:32px;">
             <div style="font-size:1.8em;margin-bottom:8px;">🌿</div>
             <div style="color:#4caf50;font-weight:800;font-size:1.1em;letter-spacing:-0.3px;margin-bottom:4px;">
                 Chatake Greenworks
@@ -1934,10 +1945,10 @@ st.markdown("""
                 📞 <a href="tel:+918600182228" style="color:#69f0ae;text-decoration:none;">+91 8600182228</a><br>
                 📧 <a href="mailto:admin@chatakeinnoworks.com" style="color:#69f0ae;text-decoration:none;">admin@chatakeinnoworks.com</a>
             </div>
-        </div>
+    </td>
 
         <!-- Platform column -->
-        <div>
+    <td width="20%" style="padding-right:20px;">
             <div style="color:#4caf50;font-weight:700;font-size:0.82em;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;">Platform</div>
             <div style="line-height:2.2;">
                 <a href="https://green-fuel-intelligence--59klled.gamma.site/" target="_blank" style="color:#a5d6a7;font-size:0.78em;text-decoration:none;display:block;">📑 Presentation</a>
@@ -1945,10 +1956,10 @@ st.markdown("""
                 <a href="https://about.chatakeinnoworks.com" target="_blank" style="color:#a5d6a7;font-size:0.78em;text-decoration:none;display:block;">🌐 Company Profile</a>
                 <a href="https://www.chatakeinnoworks.com" target="_blank" style="color:#a5d6a7;font-size:0.78em;text-decoration:none;display:block;">🏢 Main Website</a>
             </div>
-        </div>
+    </td>
 
         <!-- Project column -->
-        <div>
+    <td width="20%" style="padding-right:20px;">
             <div style="color:#4caf50;font-weight:700;font-size:0.82em;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;">Project Team</div>
             <div style="line-height:2.2;color:#a5d6a7;font-size:0.78em;">
                 <div>Ms. Tanishka Deshpande</div>
@@ -1956,10 +1967,10 @@ st.markdown("""
                 <div>Ms. Aditi Gangji</div>
                 <div>Ms. Shruti Hiremath</div>
             </div>
-        </div>
+    </td>
 
         <!-- Connect column -->
-        <div>
+    <td width="20%">
             <div style="color:#4caf50;font-weight:700;font-size:0.82em;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;">Connect</div>
             <div style="line-height:2.2;">
                 <a href="https://www.linkedin.com/company/chatakeinnoworks" target="_blank" style="color:#a5d6a7;font-size:0.78em;text-decoration:none;display:block;">💼 LinkedIn</a>
@@ -1967,26 +1978,24 @@ st.markdown("""
                 <a href="https://open.spotify.com/show/1zeA2xxVg5kGOV9bhAGigQ" target="_blank" style="color:#a5d6a7;font-size:0.78em;text-decoration:none;display:block;">🎧 Podcast</a>
                 <a href="mailto:admin@chatakeinnoworks.com" style="color:#a5d6a7;font-size:0.78em;text-decoration:none;display:block;">✉️ Contact Us</a>
             </div>
-        </div>
+    </td>
 
-    </div>
+    </tr></table>
 
     <!-- Bottom bar -->
-    <div style="
-        border-top: 1px solid rgba(45,122,45,0.4);
-        padding-top: 18px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 10px;
-    ">
-        <div style="color:#2d5a2d;font-size:0.72em;">
-            © 2026 Chatake Innoworks Pvt. Ltd. All rights reserved. &nbsp;|&nbsp; MindforgeAI Research Division
-        </div>
-        <div style="color:#4caf50;font-size:0.72em;font-weight:600;">
-            🏆 GFIS v2.0 &nbsp;·&nbsp; Green Fuel Intelligence System &nbsp;·&nbsp; DIPEX 2026
-        </div>
-    </div>
+    <table width="100%" style="border-collapse:collapse;border-top:1px solid rgba(45,122,45,0.4);padding-top:0;margin-top:4px;">
+      <tr>
+        <td style="padding-top:16px;">
+          <div style="color:#2d5a2d;font-size:0.72em;">
+              © 2026 Chatake Innoworks Pvt. Ltd. All rights reserved. &nbsp;|&nbsp; MindforgeAI Research Division
+          </div>
+        </td>
+        <td style="padding-top:16px;text-align:right;">
+          <div style="color:#4caf50;font-size:0.72em;font-weight:600;">
+              🏆 GFIS v2.0 &nbsp;·&nbsp; Green Fuel Intelligence System &nbsp;·&nbsp; DIPEX 2026
+          </div>
+        </td>
+      </tr>
+    </table>
 </div>
 """, unsafe_allow_html=True)
