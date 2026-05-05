@@ -1,0 +1,77 @@
+{
+  "project": "GFIS Level 2",
+  "deployment": {
+    "recommended_public_url": "https://level2.gfis.chatakeinnoworks.com",
+    "alternate_path": "https://gfis.chatakeinnoworks.com/level-2/",
+    "status": "local scaffold"
+  },
+  "api": {
+    "local_base_url": "http://127.0.0.1:8010",
+    "production_base_url": "/api",
+    "endpoints": [
+      "/health",
+      "/predict",
+      "/simulate",
+      "/plant-run",
+      "/soft-sensor",
+      "/optimize",
+      "/evaluate",
+      "/research/stress-tests"
+    ]
+  },
+  "library": [
+    {
+      "title": "GFIS BITS Abstract and Project Outline",
+      "type": "submission",
+      "status": "prepared",
+      "href": "library/GFIS_BITS_Abstract_Outline_Report_Final.pdf",
+      "source_path": "/Users/akashchatake/Downloads/MTech/Semester_4/Dissertation_Prepared_Files/04_Drafts_and_Working_Documents/03_Abstract/GFIS_BITS_Abstract_Outline_Report_Final.pdf"
+    },
+    {
+      "title": "GFIS Final Abstract",
+      "type": "abstract",
+      "status": "prepared",
+      "href": "library/GFIS_Final_Abstract_Powerful.pdf",
+      "source_path": "/Users/akashchatake/Downloads/MTech/Semester_4/Dissertation_Prepared_Files/04_Drafts_and_Working_Documents/03_Abstract/GFIS_Final_Abstract_Powerful.pdf"
+    },
+    {
+      "title": "GFIS Dissertation Research Report",
+      "type": "research report",
+      "status": "prepared",
+      "href": "library/GFIS_Dissertation_Research_Report.pdf",
+      "source_path": "/Users/akashchatake/Downloads/MTech/Semester_4/Dissertation_Prepared_Files/04_Drafts_and_Working_Documents/05_Implementation/GFIS_Project/reports/GFIS_Dissertation_Research_Report.pdf"
+    },
+    {
+      "title": "GFIS Dissertation Presentation",
+      "type": "presentation",
+      "status": "prepared",
+      "href": "library/GFIS_Dissertation_Presentation.pdf",
+      "source_path": "/Users/akashchatake/Downloads/MTech/Semester_4/Dissertation_Prepared_Files/04_Drafts_and_Working_Documents/05_Implementation/GFIS_Project/docs/presentation/rendered/GFIS_Dissertation_Presentation.pdf"
+    },
+    {
+      "title": "GFIS Dissertation Booklet",
+      "type": "booklet",
+      "status": "working draft",
+      "href": "library/GFIS_Dissertation_Booklet_latest_from_downloads.pdf",
+      "source_path": "/Users/akashchatake/Downloads/MTech/Semester_4/Dissertation_Prepared_Files/04_Drafts_and_Working_Documents/04_Report_Booklet/GFIS_Dissertation_Booklet_latest_from_downloads.pdf"
+    },
+    {
+      "title": "GFIS Demo Evidence",
+      "type": "evidence",
+      "status": "prepared",
+      "source_path": "/Users/akashchatake/Downloads/MTech/Semester_4/Dissertation_Prepared_Files/04_Drafts_and_Working_Documents/05_Implementation/GFIS_Project/reports/demo_evidence.md"
+    },
+    {
+      "title": "GFIS Research Scenario Experiments",
+      "type": "experiment report",
+      "status": "prepared",
+      "source_path": "/Users/akashchatake/Downloads/MTech/Semester_4/Dissertation_Prepared_Files/04_Drafts_and_Working_Documents/05_Implementation/GFIS_Project/reports/research_scenario_experiments.md"
+    },
+    {
+      "title": "GFIS 16 Week Execution Plan",
+      "type": "planning",
+      "status": "prepared",
+      "source_path": "/Users/akashchatake/Downloads/MTech/Semester_4/Dissertation_Prepared_Files/04_Drafts_and_Working_Documents/05_Implementation/GFIS_Project/docs/research_16_week_execution_plan.md"
+    }
+  ]
+}
