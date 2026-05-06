@@ -13,6 +13,7 @@
       <h1>Research Workbench</h1>
     </div>
     <nav aria-label="Primary">
+      <a href="../">GFIS Home</a>
       <a href="#engines">Engines</a>
       <a href="#live-apps">Live Apps</a>
       <a href="#library">Library</a>
@@ -33,6 +34,7 @@
           It is designed to connect the ML engine, industrial simulation, reports, diary, and deployment pipeline in one place.
         </p>
         <div class="hero-actions">
+          <a href="../">Back To GFIS Home</a>
           <a href="apps/model-control-room/" target="_blank" rel="noopener">Open Model Control Room</a>
           <a href="apps/model-control-room/industrial_simulation.html" target="_blank" rel="noopener">Open Industrial Simulation</a>
         </div>
@@ -70,6 +72,12 @@
           <h3>Industrial Simulation Engine</h3>
           <p>Plant-style simulation surface for process behavior, methane production, operating drift, and industrial demonstration scenarios.</p>
           <a href="apps/model-control-room/industrial_simulation.html" target="_blank" rel="noopener">Launch industrial simulation</a>
+        </article>
+        <article class="launch-panel">
+          <span class="status-dot muted"></span>
+          <h3>Streamlit Research Dashboard</h3>
+          <p>Rapid dissertation dashboard for dataset viewing, model checks, metrics, and supervisor demos. Use this when running the full local demo stack.</p>
+          <a href="http://127.0.0.1:8510/" target="_blank" rel="noopener">Open local Streamlit dashboard</a>
         </article>
       </div>
     </section>
@@ -180,16 +188,16 @@
       <div id="loginPanel" class="workspace-card login-card">
         <div>
           <h3>GFIS Team Login</h3>
-          <p>Use admin for team/user control, or user for notes and diary work. This prototype stores entries in this browser.</p>
+          <p>Use the private credential note from the GFIS project docs. This prototype stores entries in this browser.</p>
         </div>
         <form id="loginForm" class="form-grid">
           <label>
             Username
-            <input id="loginUser" type="email" autocomplete="username" value="greenworks@chatakeinnoworks.com">
+            <input id="loginUser" type="email" autocomplete="username" placeholder="GFIS team email">
           </label>
           <label>
             Password
-            <input id="loginPass" type="password" autocomplete="current-password" value="GFIS@2026">
+            <input id="loginPass" type="password" autocomplete="current-password" placeholder="Password">
           </label>
           <button type="submit">Login</button>
           <p id="loginMessage" class="form-message"></p>
