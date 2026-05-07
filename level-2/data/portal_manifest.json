@@ -1,13 +1,13 @@
 {
   "project": "GFIS Level 2",
   "deployment": {
-    "recommended_public_url": "https://level2.gfis.chatakeinnoworks.com",
+    "recommended_public_url": "https://d2c2mw7lwtswdx.cloudfront.net/level-2/",
     "alternate_path": "https://gfis.chatakeinnoworks.com/level-2/",
-    "status": "local scaffold"
+    "status": "AWS CloudFront deployed; custom GFIS domain pending DNS cutover"
   },
   "api": {
     "local_base_url": "http://127.0.0.1:8010",
-    "production_base_url": "/api",
+    "production_base_url": "https://y3kgjnwetp.us-east-1.awsapprunner.com",
     "endpoints": [
       "/health",
       "/predict",
@@ -20,6 +20,37 @@
     ]
   },
   "library": [
+    {
+      "title": "GFIS Consolidated Abstract and Project Layout - Final",
+      "type": "BITS submission working master",
+      "status": "latest consolidated",
+      "href": "library/GFIS_Consolidated_Abstract_Project_Layout_Final.pdf",
+      "docx": "library/GFIS_Consolidated_Abstract_Project_Layout_Final.docx",
+      "source_path": "/Users/akashchatake/Downloads/MTech/Semester_4/Dissertation_Prepared_Files/04_Drafts_and_Working_Documents/03_Abstract/GFIS_Consolidated_Abstract_Project_Layout_Final.pdf"
+    },
+    {
+      "title": "GFIS BITS Abstract Outline - Upgraded Resource Draft",
+      "type": "abstract outline",
+      "status": "upgraded resource",
+      "href": "library/GFIS_BITS_Abstract_Outline_Final_Upgraded.pdf",
+      "docx": "library/GFIS_BITS_Abstract_Outline_Final_Upgraded.docx",
+      "source_path": "/Users/akashchatake/Downloads/MTech/Semester_4/Dissertation_Documentation/Initiall_Drafts/Resource/Gfis Bits Abstract Outline Final.pdf"
+    },
+    {
+      "title": "GFIS Publication-Quality Deliverable Blueprint",
+      "type": "research blueprint",
+      "status": "upgraded resource",
+      "href": "library/GFIS_Publication_Quality_Deliverable_Blueprint.pdf",
+      "docx": "library/GFIS_Publication_Quality_Deliverable_Blueprint.docx",
+      "source_path": "/Users/akashchatake/Downloads/MTech/Semester_4/Dissertation_Documentation/Initiall_Drafts/Resource/GFIS Publication-Quality Deliverable Blueprint.pdf"
+    },
+    {
+      "title": "BITS Sample Project Abstract Outline Report",
+      "type": "BITS sample template",
+      "status": "reference",
+      "href": "library/BITS_Sample_Project_Abstract_Outline_Report.pdf",
+      "source_path": "/Users/akashchatake/Downloads/MTech/Semester_4/Dissertation_Documentation/Initiall_Drafts/Resource/Sample_Project Abstract_Outline Report_Course No._BITS ID No..docx.pdf"
+    },
     {
       "title": "GFIS BITS Abstract and Project Outline",
       "type": "submission",
