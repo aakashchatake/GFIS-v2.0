@@ -360,10 +360,60 @@ th {
   margin-top: 22px;
 }
 
+.documentation-vault {
+  margin-bottom: 16px;
+}
+
+.upload-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: end;
+  margin-bottom: 18px;
+  padding: 16px;
+  background: #f4f7f2;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.document-layout {
+  display: grid;
+  grid-template-columns: 330px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.document-layout aside {
+  display: grid;
+  gap: 14px;
+}
+
+.document-layout h3 {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.92rem;
+  text-transform: uppercase;
+}
+
 .doc-list {
   display: grid;
   gap: 10px;
   align-content: start;
+}
+
+.doc-folder {
+  display: grid;
+  gap: 7px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfcfa;
+}
+
+.doc-folder strong {
+  color: var(--accent);
+  font-size: 0.82rem;
+  text-transform: uppercase;
 }
 
 .doc-list button {
@@ -388,6 +438,18 @@ th {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fff;
+}
+
+.document-frame iframe {
+  width: 100%;
+  min-height: 720px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.vault-table {
+  margin-top: 18px;
 }
 
 .reading-layout {
@@ -675,6 +737,8 @@ button {
   .split,
   .live-grid,
   .document-viewer,
+  .document-layout,
+  .upload-panel,
   .login-card,
   .workspace-grid,
   .corporate-footer {

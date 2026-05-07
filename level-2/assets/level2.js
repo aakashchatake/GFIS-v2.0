@@ -12,28 +12,49 @@ async function loadManifest() {
     manifest.library.forEach((item) => {
       const row = document.createElement("tr");
       row.innerHTML = `
+        <td>${item.folder || "General"}</td>
         <td>${item.href ? `<a href="${item.href}" target="_blank" rel="noopener">${item.title}</a>` : item.title}</td>
         <td>${item.type}</td>
         <td>${item.status}</td>
       `;
       table.appendChild(row);
 
-      if (docList && item.href && item.href.endsWith(".pdf")) {
+      if (docList && item.href) {
+        const group = item.folder || "General";
+        let groupNode = Array.from(docList.querySelectorAll(".doc-folder")).find((node) => node.dataset.docFolder === group);
+        if (!groupNode) {
+          groupNode = document.createElement("div");
+          groupNode.className = "doc-folder";
+          groupNode.dataset.docFolder = group;
+          groupNode.innerHTML = `<strong>${group}</strong>`;
+          docList.appendChild(groupNode);
+        }
         const button = document.createElement("button");
         button.type = "button";
         button.textContent = item.title;
-        button.addEventListener("click", () => {
-          document.querySelector("#docFrame").src = item.href;
-        });
-        docList.appendChild(button);
+        button.addEventListener("click", () => openPortalDocument(item));
+        groupNode.appendChild(button);
       }
     });
   } catch (error) {
-    table.innerHTML = "<tr><td colspan=\"3\">Manifest loads when served through a local or production web server.</td></tr>";
+    table.innerHTML = "<tr><td colspan=\"4\">Manifest loads when served through a local or production web server.</td></tr>";
   }
 }
 
-loadManifest();
+function openPortalDocument(item) {
+  const frame = document.querySelector("#docFrame");
+  if (!frame || !item.href) return;
+  if (item.href.match(/\\.pdf$/i)) {
+    frame.src = item.href;
+    return;
+  }
+  frame.srcdoc = `
+    <style>body{font-family:Arial,sans-serif;padding:28px;line-height:1.6;color:#17201b}a{color:#264c7a;font-weight:700}</style>
+    <h1>${item.title}</h1>
+    <p>This file type is available for download/opening in a desktop application.</p>
+    <p><a href="${item.href}" target="_blank" rel="noopener">Open or download file</a></p>
+  `;
+}
 
 const DEFAULT_USERS = [
   {
@@ -110,7 +131,92 @@ function renderAuth() {
     renderNotes();
     renderDiary();
     renderUsers();
+    loadManifest();
+    renderUploadedDocs();
   }
+}
+
+function openDocDb() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open("gfis_l2_docs", 1);
+    request.onupgradeneeded = () => {
+      request.result.createObjectStore("files", { keyPath: "id" });
+    };
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
+}
+
+async function putUploadedDoc(file) {
+  const db = await openDocDb();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction("files", "readwrite");
+    tx.objectStore("files").put({
+      id: `${Date.now()}-${file.name}`,
+      name: file.name,
+      type: file.type || "application/octet-stream",
+      size: file.size,
+      updatedAt: new Date().toISOString(),
+      blob: file
+    });
+    tx.oncomplete = resolve;
+    tx.onerror = () => reject(tx.error);
+  });
+}
+
+async function getUploadedDocs() {
+  const db = await openDocDb();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction("files", "readonly");
+    const request = tx.objectStore("files").getAll();
+    request.onsuccess = () => resolve(request.result || []);
+    request.onerror = () => reject(request.error);
+  });
+}
+
+async function clearUploadedDocs() {
+  const db = await openDocDb();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction("files", "readwrite");
+    tx.objectStore("files").clear();
+    tx.oncomplete = resolve;
+    tx.onerror = () => reject(tx.error);
+  });
+}
+
+async function renderUploadedDocs() {
+  const list = document.querySelector("#uploadedDocList");
+  if (!list) return;
+  const docs = await getUploadedDocs();
+  list.innerHTML = "";
+  if (!docs.length) {
+    list.innerHTML = "<div class=\"record-item\"><strong>No uploaded files yet.</strong><span>Use the upload control above.</span></div>";
+    return;
+  }
+  docs.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)).forEach((doc) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = doc.name;
+    button.addEventListener("click", () => openUploadedDoc(doc));
+    list.appendChild(button);
+  });
+}
+
+function openUploadedDoc(doc) {
+  const frame = document.querySelector("#docFrame");
+  if (!frame) return;
+  const url = URL.createObjectURL(doc.blob);
+  if (doc.type === "application/pdf" || doc.name.match(/\\.pdf$/i)) {
+    frame.removeAttribute("srcdoc");
+    frame.src = url;
+    return;
+  }
+  frame.srcdoc = `
+    <style>body{font-family:Arial,sans-serif;padding:28px;line-height:1.6;color:#17201b}a{color:#264c7a;font-weight:700}</style>
+    <h1>${doc.name}</h1>
+    <p>This uploaded file is stored in this browser. PDFs embed directly; Office, ZIP and data files can be opened or downloaded.</p>
+    <p><a href="${url}" download="${doc.name}">Open or download uploaded file</a></p>
+  `;
 }
 
 function renderNotes() {
@@ -253,6 +359,20 @@ document.querySelector("#userList")?.addEventListener("click", (event) => {
   if (!emailHash || emailHash === state.user?.emailHash) return;
   writeJson("gfis_l2_users", users().filter((user) => user.emailHash !== emailHash));
   renderUsers();
+});
+
+document.querySelector("#docUpload")?.addEventListener("change", async (event) => {
+  const files = Array.from(event.target.files || []);
+  for (const file of files) {
+    await putUploadedDoc(file);
+  }
+  event.target.value = "";
+  renderUploadedDocs();
+});
+
+document.querySelector("#clearUploadedDocs")?.addEventListener("click", async () => {
+  await clearUploadedDocs();
+  renderUploadedDocs();
 });
 
 document.querySelector("#diaryDate") && (document.querySelector("#diaryDate").value = new Date().toISOString().slice(0, 10));

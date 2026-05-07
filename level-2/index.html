@@ -16,7 +16,7 @@
       <a href="../">GFIS Home</a>
       <a href="#engines">Engines</a>
       <a href="#live-apps">Live Apps</a>
-      <a href="#library">Library</a>
+      <a href="#workspace">Documentation</a>
       <a href="#readings">Readings</a>
       <a href="#workspace">Workspace</a>
       <a href="#notes">Notes</a>
@@ -111,34 +111,6 @@
       </div>
     </section>
 
-    <section id="library" class="band subtle">
-      <div class="section-head">
-        <p class="eyebrow">Research Library</p>
-        <h2>Documents And Evidence</h2>
-      </div>
-      <div class="quote-inline">
-        "A research system is strongest when every claim has a working artifact behind it."
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Document</th>
-              <th>Type</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="libraryRows">
-            <tr><td colspan="3">Loading manifest...</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="document-viewer">
-        <div class="doc-list" id="docList"></div>
-        <iframe id="docFrame" title="GFIS document preview" src="library/GFIS_BITS_Abstract_Outline_Report_Final.pdf"></iframe>
-      </div>
-    </section>
-
     <section id="readings" class="band">
       <div class="section-head">
         <p class="eyebrow">Live Readings</p>
@@ -213,6 +185,53 @@
           </div>
           <button id="logoutButton" type="button">Logout</button>
         </div>
+
+        <section id="library" class="workspace-card documentation-vault">
+          <div class="section-head compact">
+            <div>
+              <p class="eyebrow">Secure Documentation Vault</p>
+              <h2>Documents, Resources, Journal Paper, Project Outline And Uploads</h2>
+            </div>
+          </div>
+          <div class="quote-inline">
+            "A research system is strongest when every claim has a working artifact behind it."
+          </div>
+          <div class="upload-panel">
+            <label>
+              Upload document to this browser
+              <input id="docUpload" type="file" multiple accept=".pdf,.doc,.docx,.xlsx,.xls,.csv,.txt,.md,.zip">
+            </label>
+            <div class="button-row">
+              <button id="clearUploadedDocs" type="button">Clear Uploaded Files</button>
+            </div>
+          </div>
+          <div class="document-layout">
+            <aside>
+              <h3>Portal Folders</h3>
+              <div class="doc-list" id="docList"></div>
+              <h3>Uploaded Here</h3>
+              <div class="doc-list uploaded-list" id="uploadedDocList"></div>
+            </aside>
+            <div class="document-frame">
+              <iframe id="docFrame" title="GFIS document preview" src="library/project-outline/GFIS_Consolidated_Abstract_Project_Layout_Final.pdf"></iframe>
+            </div>
+          </div>
+          <div class="table-wrap vault-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Folder</th>
+                  <th>Document</th>
+                  <th>Type</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="libraryRows">
+                <tr><td colspan="4">Login complete. Loading secure manifest...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
 
         <div class="workspace-grid">
           <section class="workspace-card">
