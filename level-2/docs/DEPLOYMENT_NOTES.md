@@ -34,9 +34,6 @@ server {
     root /var/www/gfis-level2;
     index index.html;
 
-    auth_basic "GFIS Level 2";
-    auth_basic_user_file /etc/nginx/.gfis-level2.htpasswd;
-
     location / {
         try_files $uri $uri/ /index.html;
     }
@@ -51,7 +48,8 @@ server {
 }
 ```
 
+Authentication is handled by the custom GFIS login screen for Documentation, Library, Diary, Notes, and Admin sections. Do not add whole-path browser Basic Auth to `/level-2/` if the public Level 2 dashboard should remain accessible.
+
 ## Document Publishing Rule
 
 Only copy approved files into the deployed `library/` directory. Keep original working files in the dissertation workspace.
-

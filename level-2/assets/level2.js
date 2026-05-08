@@ -2,6 +2,11 @@ async function loadManifest() {
   const table = document.querySelector("#libraryRows");
   const docList = document.querySelector("#docList");
   if (!table) return;
+  if (!state.user) {
+    table.innerHTML = "<tr><td colspan=\"4\">Login required for the secure documentation manifest.</td></tr>";
+    if (docList) docList.innerHTML = "";
+    return;
+  }
 
   try {
     const response = await fetch("data/portal_manifest.json");
@@ -44,6 +49,10 @@ async function loadManifest() {
 function openPortalDocument(item) {
   const frame = document.querySelector("#docFrame");
   if (!frame || !item.href) return;
+  if (!state.user) {
+    requireLogin("Documentation is inside the GFIS team workspace.");
+    return;
+  }
   if (item.href.match(/\\.pdf$/i)) {
     frame.src = item.href;
     return;
@@ -134,6 +143,36 @@ function renderAuth() {
     loadManifest();
     renderUploadedDocs();
   }
+}
+
+function requireLogin(message = "Please login to access this GFIS section.") {
+  const workspace = document.querySelector("#workspace");
+  workspace?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const loginMessage = document.querySelector("#loginMessage");
+  if (loginMessage) loginMessage.textContent = message;
+
+  const toast = document.createElement("div");
+  toast.className = "auth-required-toast";
+  toast.innerHTML = `<strong>GFIS login required</strong><span>${message}</span>`;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 3600);
+}
+
+function wireProtectedLinks() {
+  document.querySelectorAll("[data-protected-link]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (state.user) return;
+      event.preventDefault();
+      requireLogin("Documentation, Library, Diary, Notes, and team controls are gated.");
+    });
+  });
+}
+
+function configureRuntimeLinks() {
+  const streamlitUrl = window.GFIS_STREAMLIT_URL || "https://ea4js82me5.us-east-1.awsapprunner.com/";
+  document.querySelectorAll(".streamlit-link").forEach((link) => {
+    link.href = streamlitUrl;
+  });
 }
 
 function openDocDb() {
@@ -376,4 +415,6 @@ document.querySelector("#clearUploadedDocs")?.addEventListener("click", async ()
 });
 
 document.querySelector("#diaryDate") && (document.querySelector("#diaryDate").value = new Date().toISOString().slice(0, 10));
+wireProtectedLinks();
+configureRuntimeLinks();
 renderAuth();

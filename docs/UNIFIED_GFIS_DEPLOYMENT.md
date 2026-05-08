@@ -18,11 +18,7 @@ gfis.chatakeinnoworks.com
 
 ## Security
 
-Level 2 contains research, diary, notes, and document references. Before publishing real private documents, enable one of:
-
-- Nginx basic auth for `/level-2/`
-- Cloudflare Access for `/level-2/`
-- FastAPI login and role-based access
+Level 2 is now publicly reachable at the shell/dashboard level. Documentation, Library, Diary, Notes, and Admin are gated by the custom GFIS login UI. For production-grade private documents, prefer backend sessions, Cognito, signed CloudFront URLs, or Cloudflare Access on only the private document routes rather than browser Basic Auth on the whole `/level-2/` path.
 
 ## Nginx Sketch
 
@@ -37,8 +33,6 @@ server {
     }
 
     location /level-2/ {
-        auth_basic "GFIS Level 2";
-        auth_basic_user_file /etc/nginx/.gfis-level2.htpasswd;
         try_files $uri $uri/ /level-2/index.html;
     }
 
@@ -51,4 +45,3 @@ server {
     }
 }
 ```
-
