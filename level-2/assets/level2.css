@@ -240,6 +240,27 @@ nav a:hover {
   background: #eef3ec;
 }
 
+.evaluator-note-band {
+  color: #f6f1ea;
+  background:
+    linear-gradient(135deg, rgba(242, 118, 24, 0.12), rgba(255, 255, 255, 0)),
+    #10100f;
+}
+
+.evaluator-note-band .eyebrow {
+  color: var(--orange);
+}
+
+.evaluator-note-band h2 {
+  color: #fffaf3;
+}
+
+.evaluator-note-band p:not(.eyebrow) {
+  max-width: 980px;
+  color: #cfc8bd;
+  line-height: 1.7;
+}
+
 .section-head {
   max-width: 860px;
   margin-bottom: 28px;
