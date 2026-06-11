@@ -192,6 +192,19 @@ nav a:hover {
   border-color: rgba(255, 255, 255, 0.18);
 }
 
+.button.level-one {
+  color: #0f1c15;
+  background: #e6efe8;
+  border-color: rgba(29, 106, 79, 0.42);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.74);
+}
+
+.button.contact-cta {
+  color: #fffaf3;
+  background: #171614;
+  border-color: rgba(242, 118, 24, 0.62);
+}
+
 .button.ghost {
   color: #d2cbc1;
   background: transparent;
@@ -594,6 +607,134 @@ nav a:hover {
   font-weight: 900;
 }
 
+.contact-hero {
+  padding: clamp(72px, 8vw, 118px) clamp(20px, 5vw, 76px);
+  color: #fffaf3;
+  background:
+    linear-gradient(90deg, rgba(16, 16, 15, 0.96), rgba(16, 16, 15, 0.72)),
+    url("gfis-dipex.jpeg") center / cover;
+  border-bottom: 1px solid #211f1b;
+}
+
+.contact-hero h1 {
+  max-width: 980px;
+  margin: 0;
+  font-size: clamp(2.3rem, 5vw, 5.6rem);
+  line-height: 0.96;
+  letter-spacing: 0;
+}
+
+.contact-hero p:not(.eyebrow) {
+  max-width: 760px;
+  margin: 24px 0 0;
+  color: #d8d0c5;
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.contact-grid-band {
+  background: #f7f4ed;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+  gap: clamp(22px, 4vw, 46px);
+  align-items: start;
+}
+
+.contact-form,
+.contact-directory {
+  padding: 24px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 20px 55px rgba(34, 29, 22, 0.05);
+}
+
+.contact-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px 13px;
+  color: var(--ink);
+  background: #fbfaf7;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  font: inherit;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.full-span {
+  grid-column: 1 / -1;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.form-note {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.contact-directory h2 {
+  margin: 0 0 18px;
+  font-size: 1.65rem;
+}
+
+.contact-directory dl {
+  display: grid;
+  gap: 0;
+  margin: 0;
+}
+
+.contact-directory div {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-directory dt {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.contact-directory dd {
+  margin: 6px 0 0;
+  color: var(--green);
+  font-weight: 800;
+}
+
+.contact-directory blockquote {
+  margin: 22px 0 0;
+  padding-left: 16px;
+  color: var(--green);
+  border-left: 4px solid var(--green);
+  line-height: 1.55;
+  font-weight: 900;
+}
+
 .corporate-footer {
   padding: 54px clamp(20px, 5vw, 76px) 28px;
   color: #dce5df;
@@ -652,7 +793,8 @@ nav a:hover {
   .hero,
   .work-layout,
   .footer-grid,
-  .vision-layout {
+  .vision-layout,
+  .contact-layout {
     grid-template-columns: 1fr;
   }
 
@@ -692,6 +834,10 @@ nav a:hover {
   nav a,
   .button {
     width: 100%;
+  }
+
+  .contact-form {
+    grid-template-columns: 1fr;
   }
 
   .pipeline li,

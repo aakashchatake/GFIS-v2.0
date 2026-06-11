@@ -135,6 +135,138 @@
       "type": "planning",
       "status": "prepared",
       "source_path": "/Users/akashchatake/Downloads/MTech/Semester_4/Dissertation_Prepared_Files/04_Drafts_and_Working_Documents/05_Implementation/GFIS_Project/docs/research_16_week_execution_plan.md"
+    },
+    {
+      "folder": "Mid-Semester Submission Pack",
+      "title": "GFIS Mid-Semester Report - Submission Ready",
+      "type": "mid-semester report",
+      "status": "submission-ready",
+      "href": "library/mid-semester-pack/turnitin/GFIS_Mid_Semester_Report_2024AB05226_Submission_Ready.pdf",
+      "source_path": "GFIS_MidSem_Turnitin_and_Viva_Pack_2026-06-11/turnitin/GFIS_Mid_Semester_Report_2024AB05226_Submission_Ready.pdf",
+      "docx": "library/mid-semester-pack/turnitin/GFIS_Mid_Semester_Report_2024AB05226_Submission_Ready.docx",
+      "category": "Turnitin Upload"
+    },
+    {
+      "folder": "Mid-Semester Submission Pack",
+      "title": "GFIS Project Abstract Outline Report",
+      "type": "abstract outline",
+      "status": "accepted/submitted",
+      "href": "library/mid-semester-pack/abstract/GFIS_Project_Abstract_Outline_Report_DISSERTATION_2024AB05226.pdf",
+      "source_path": "GFIS_MidSem_Turnitin_and_Viva_Pack_2026-06-11/abstract/GFIS_Project_Abstract_Outline_Report_DISSERTATION_2024AB05226.pdf",
+      "docx": "library/mid-semester-pack/abstract/GFIS_Project_Abstract_Outline_Report_DISSERTATION_2024AB05226.docx",
+      "category": "Accepted Abstract"
+    },
+    {
+      "folder": "Mid-Semester Submission Pack",
+      "title": "GFIS Final Abstract",
+      "type": "abstract",
+      "status": "accepted reference",
+      "href": "library/mid-semester-pack/abstract/GFIS_Final_Abstract_Powerful.pdf",
+      "source_path": "GFIS_MidSem_Turnitin_and_Viva_Pack_2026-06-11/abstract/GFIS_Final_Abstract_Powerful.pdf",
+      "docx": "library/mid-semester-pack/abstract/GFIS_Final_Abstract_Powerful.docx",
+      "category": "Accepted Abstract"
+    },
+    {
+      "folder": "Mid-Semester Submission Pack",
+      "title": "BITS Abstract Evaluation Remarks - Accepted Excellent",
+      "type": "evaluation evidence",
+      "status": "accepted excellent",
+      "href": "library/mid-semester-pack/abstract/GFIS_BITS_Abstract_Evaluation_Remarks_Accepted_Excellent_2026-05-29.png",
+      "source_path": "GFIS_MidSem_Turnitin_and_Viva_Pack_2026-06-11/abstract/GFIS_BITS_Abstract_Evaluation_Remarks_Accepted_Excellent_2026-05-29.png",
+      "category": "Accepted Abstract"
+    },
+    {
+      "folder": "Mid-Semester Submission Pack",
+      "title": "GFIS Abstract Viva Transcript",
+      "type": "viva transcript",
+      "status": "reference",
+      "href": "library/mid-semester-pack/abstract/GFIS_Abstract_Viva_Transcript_Gemini_2026-06-05.pdf",
+      "source_path": "GFIS_MidSem_Turnitin_and_Viva_Pack_2026-06-11/abstract/GFIS_Abstract_Viva_Transcript_Gemini_2026-06-05.pdf",
+      "category": "Accepted Abstract"
+    },
+    {
+      "folder": "Mid-Semester Submission Pack",
+      "title": "GFIS Dissertation Presentation",
+      "type": "presentation",
+      "status": "prepared",
+      "href": "library/mid-semester-pack/presentation/GFIS_Dissertation_Presentation.pdf",
+      "source_path": "GFIS_MidSem_Turnitin_and_Viva_Pack_2026-06-11/presentation/GFIS_Dissertation_Presentation.pdf",
+      "docx": "library/mid-semester-pack/presentation/GFIS_Dissertation_Presentation.pptx",
+      "category": "Presentation"
+    },
+    {
+      "folder": "Mid-Semester Submission Pack",
+      "title": "GFIS Mid-Semester Explanation File",
+      "type": "explanation",
+      "status": "prepared",
+      "href": "library/mid-semester-pack/viva/GFIS_MidSem_Explanation_File.pdf",
+      "source_path": "GFIS_MidSem_Turnitin_and_Viva_Pack_2026-06-11/viva/GFIS_MidSem_Explanation_File.pdf",
+      "docx": "library/mid-semester-pack/viva/GFIS_MidSem_Explanation_File.docx",
+      "category": "Viva Preparation"
+    },
+    {
+      "folder": "Mid-Semester Submission Pack",
+      "title": "GFIS Mid-Semester Presentation Script",
+      "type": "presentation script",
+      "status": "prepared",
+      "href": "library/mid-semester-pack/viva/GFIS_MidSem_Presentation_Script.pdf",
+      "source_path": "GFIS_MidSem_Turnitin_and_Viva_Pack_2026-06-11/viva/GFIS_MidSem_Presentation_Script.pdf",
+      "docx": "library/mid-semester-pack/viva/GFIS_MidSem_Presentation_Script.docx",
+      "category": "Viva Preparation"
+    },
+    {
+      "folder": "Mid-Semester Submission Pack",
+      "title": "GFIS Evaluation Report",
+      "type": "evidence",
+      "status": "prepared",
+      "href": "library/mid-semester-pack/evidence/evaluation_report.md",
+      "source_path": "GFIS_MidSem_Turnitin_and_Viva_Pack_2026-06-11/evidence/evaluation_report.md",
+      "category": "Dataset and Evidence"
+    },
+    {
+      "folder": "Mid-Semester Submission Pack",
+      "title": "GFIS Demo Evidence",
+      "type": "evidence",
+      "status": "prepared",
+      "href": "library/mid-semester-pack/evidence/demo_evidence.md",
+      "source_path": "GFIS_MidSem_Turnitin_and_Viva_Pack_2026-06-11/evidence/demo_evidence.md",
+      "category": "Dataset and Evidence"
+    },
+    {
+      "folder": "Mid-Semester Submission Pack",
+      "title": "GFIS Scenario Experiments",
+      "type": "experiment report",
+      "status": "prepared",
+      "href": "library/mid-semester-pack/evidence/research_scenario_experiments.md",
+      "source_path": "GFIS_MidSem_Turnitin_and_Viva_Pack_2026-06-11/evidence/research_scenario_experiments.md",
+      "category": "Dataset and Evidence"
+    },
+    {
+      "folder": "Mid-Semester Submission Pack",
+      "title": "Synthetic Anaerobic Digestion Dataset - Raw",
+      "type": "dataset",
+      "status": "controlled validation",
+      "href": "library/mid-semester-pack/evidence/synthetic_anaerobic_digestion_raw.csv",
+      "source_path": "GFIS_MidSem_Turnitin_and_Viva_Pack_2026-06-11/evidence/synthetic_anaerobic_digestion_raw.csv",
+      "category": "Dataset and Evidence"
+    },
+    {
+      "folder": "Mid-Semester Submission Pack",
+      "title": "Synthetic Anaerobic Digestion Dataset - Processed",
+      "type": "dataset",
+      "status": "controlled validation",
+      "href": "library/mid-semester-pack/evidence/synthetic_anaerobic_digestion_processed.csv",
+      "source_path": "GFIS_MidSem_Turnitin_and_Viva_Pack_2026-06-11/evidence/synthetic_anaerobic_digestion_processed.csv",
+      "category": "Dataset and Evidence"
+    },
+    {
+      "folder": "Mid-Semester Submission Pack",
+      "title": "Checked 2024ab05226 PDF - Reference Not Primary Upload",
+      "type": "reference",
+      "status": "do not submit by default",
+      "href": "library/mid-semester-pack/reference/2024ab05226_checked_letter_size_reference.pdf",
+      "source_path": "GFIS_MidSem_Turnitin_and_Viva_Pack_2026-06-11/reference/2024ab05226_checked_letter_size_reference.pdf",
+      "category": "Reference Only"
     }
   ],
   "folders": [
@@ -142,6 +274,11 @@
       "id": "project-outline",
       "title": "Project Outline",
       "description": "BITS abstract, project layout, final abstract and outline resources."
+    },
+    {
+      "id": "mid-semester-pack",
+      "title": "Mid-Semester Submission Pack",
+      "description": "Turnitin upload report, accepted abstract, presentation, dataset evidence, explanation file, and viva script."
     },
     {
       "id": "journal-paper",
